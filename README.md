@@ -20,4 +20,15 @@ Proyek ini dibangun untuk lembaga di bidang kesehatan preventif dengan karakteri
 + Lembaga ingin meningkatkan efektivitas deteksi risiko diabetes di masyarakat luas, khususnya di wilayah dengan keterbatasan akses fasilitas medis, dengan pendekatan berbasis machine learning.
 
 ### Problem Statement
+1. Faktor-faktor (fitur) apa yang paling memengaruhi prediksi risiko diabetes seseorang?
+2. Bagaimana cara memprediksi apakah seseorang berisiko terkena diabetes berdasarkan data kesehatan dasar tanpa tes laboratorium?
+3. Model klasifikasi mana yang paling akurat untuk memprediksi risiko diabetes pada dataset ini?
+
+### Goals
+1. Membangun model prediksi risiko diabetes berdasarkan data kesehatan dasar (tanpa memerlukan hasil laboratorium), sehingga dapat digunakan untuk skrining dini dan membantu pengambilan keputusan medis awal.
+2. Mengevaluasi dan membandingkan performa beberapa algoritma klasifikasi seperti Logistic Regression, Random Forest, dan XGBoost untuk mengetahui model mana yang memberikan hasil terbaik dalam mendeteksi risiko diabetes.
+3. Mengidentifikasi fitur-fitur paling signifikan dalam memengaruhi risiko diabetes.
+
+### Solution Statement
+1. Membangun model klasifikasi baseline menggunakan Logistic Regression dan Random Forest untuk memprediksi apakah seseorang berisiko terkena diabetes atau tidak.
 
