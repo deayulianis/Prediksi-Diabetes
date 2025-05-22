@@ -20,15 +20,37 @@ Proyek ini dibangun untuk lembaga di bidang kesehatan preventif dengan karakteri
 + Lembaga ingin meningkatkan efektivitas deteksi risiko diabetes di masyarakat luas, khususnya di wilayah dengan keterbatasan akses fasilitas medis, dengan pendekatan berbasis machine learning.
 
 ### Problem Statement
-1. Faktor-faktor (fitur) apa yang paling memengaruhi prediksi risiko diabetes seseorang?
-2. Bagaimana cara memprediksi apakah seseorang berisiko terkena diabetes berdasarkan data kesehatan dasar tanpa tes laboratorium?
-3. Model klasifikasi mana yang paling akurat untuk memprediksi risiko diabetes pada dataset ini?
+1. Apakah seseorang berisiko terkena diabetes berdasarkan fitur kesehatannya?
+2. Fitur apa saja yang paling memengaruhi risiko terkena diabetes?
+3. Bagaimana cara memproses data agar model dapat belajar secara optimal?
 
 ### Goals
-1. Membangun model prediksi risiko diabetes berdasarkan data kesehatan dasar (tanpa memerlukan hasil laboratorium), sehingga dapat digunakan untuk skrining dini dan membantu pengambilan keputusan medis awal.
-2. Mengevaluasi dan membandingkan performa beberapa algoritma klasifikasi seperti Logistic Regression, Random Forest, dan XGBoost untuk mengetahui model mana yang memberikan hasil terbaik dalam mendeteksi risiko diabetes.
-3. Mengidentifikasi fitur-fitur paling signifikan dalam memengaruhi risiko diabetes.
+1. 
+2.
+3. 
 
 ### Solution Statement
-1. Membangun model klasifikasi baseline menggunakan Logistic Regression dan Random Forest untuk memprediksi apakah seseorang berisiko terkena diabetes atau tidak.
+1. 
+
+## Data Understanding 
+
+Dataset yang digunakan dalam proyek ini merupakan data harga sewa rumah dengan berbagai karakteristik di India. Dataset ini dapat diunduh di [Kaggle : Diabetes prediction dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset).
+
+Berikut informasi pada dataset :
+
++ Dataset memiliki format CSV (Comma-Seperated Values).
++ Dataset memiliki 100000 sample dengan 9 fitur.
++ Dataset memiliki 4 fitur bertipe int64, 2 fitur bertipe object, dan 3 fitur bertipe float64.
++ Tidak ada missing value dalam dataset.
+
+### Variable - variable pada dataset
++ gender – Jenis kelamin responden (Male, Female, Other)
++ age – Usia responden (dalam tahun)
++ hypertension – Riwayat hipertensi (1 = ya, 0 = tidak)
++ heart_disease – Riwayat penyakit jantung (1 = ya, 0 = tidak)
++ smoking_history – Riwayat merokok (never, current, former, dll.)
++ bmi – Indeks Massa Tubuh
++ HbA1c_level – Tingkat HbA1c (indikator rata-rata gula darah)
++ blood_glucose_level – Kadar glukosa dalam darah
++ diabetes – Label target (1 = mengidap diabetes, 0 = tidak)
 
