@@ -20,8 +20,9 @@ Deteksi dini diabetes dapat menyelamatkan nyawa dan mengurangi beban sistem kese
 3. Fitur mana yang paling penting dalam memprediksi kemungkinan diabetes?
 
 ### Goals
-1. Menjawab pertanyaan epidemiologis dari data diabetes.
-2. Membangun model prediktif yang dapat mendeteksi risiko diabetes berdasarkan data medis pasien.
+1. Menganalisis distribusi diabetes berdasarkan kelompok usia dan jenis kelamin.
+2. Menganalisis perbedaan rata-rata fitur penting (BMI, HbA1c, glukosa) pada penderita diabetes dan non-diabetes.
+3. Membangun model machine learning dan mengidentifikasi fitur paling berpengaruh dalam prediksi diabetes.
 
 ### Solution Statement
 1. *Solusi 1:* Gunakan model non-linear seperti Random Forest Classifier.
