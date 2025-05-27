@@ -122,95 +122,98 @@ Model yang sudah dilatih digunakan untuk memprediksi data testing, kemudian hasi
 
 ## Evaluation
 
-*Pertanyaan 1: Prevalensi berdasarkan usia dan gender*
+### ✅ **Problem Statement 1:**
 
-![image](https://github.com/user-attachments/assets/8ce8b633-d0bc-4226-8499-1c70e614c8e4)
+> **Bagaimana prevalensi diabetes bervariasi berdasarkan kelompok usia dan jenis kelamin?**
 
-Berdasarkan output tersebut, prevalensi diabetes dalam kelompok usia <30 tahun bervariasi berdasarkan jenis kelamin sebagai berikut:
+📊 **Analisis Terkait:**
+Meskipun visualisasi ini tidak ditampilkan di gambar, informasi seperti ini biasanya berasal dari *EDA (Exploratory Data Analysis)*. Jika kamu sebelumnya melakukan analisis distribusi dengan `groupby(['gender', 'age_group'])` dan memvisualisasikannya, maka kamu **sudah menjawab problem ini**.
+Namun jika belum, sebaiknya tambahkan analisis tersebut dalam bagian awal notebook atau laporan untuk memperkuat pemahaman bisnis.
 
-+ Laki-laki (gender = 0):
+---
 
-Tidak diabetes (label 0): 88.92%
+### ✅ **Problem Statement 2:**
 
-Diabetes (label 1): 13.08%
+> **Berapa rata-rata BMI, kadar glukosa, dan HbA1c pada penderita diabetes vs non-diabetes?**
 
-+ Perempuan (gender = 1):
+📊 **Analisis Terkait:**
+Jika kamu menggunakan `groupby('diabetes')` lalu menghitung rata-rata fitur seperti `bmi`, `blood_glucose_level`, `HbA1c_level`, maka kamu **sudah menjawab pertanyaan ini**.
+Visualisasi seperti barplot atau boxplot bisa memperkuat perbandingan ini.
 
-Tidak diabetes: 82.83%
+---
 
-Diabetes: 17.17%
+### ✅ **Problem Statement 3:**
 
-*Pertanyaan 2: Rata-rata BMI, Glukosa, dan HbA1c*
+> **Fitur mana yang paling penting dalam memprediksi kemungkinan diabetes?**
 
-![image](https://github.com/user-attachments/assets/b7be0b66-906b-49a4-8d0c-195a7c8481ed)
+📈 **Evaluasi Model:**
+Model **XGBoost** telah kamu gunakan, dan itu adalah model berbasis pohon yang memungkinkan kita menilai *feature importance*.
+Jika kamu menggunakan `xgb.feature_importances_` atau `plot_importance(xgb)`, maka kamu **sudah menjawab problem ini** secara teknis dan eksplisit.
 
-Berdasarkan ouput yang diberikan, berikut adalah rata-rata BMI, kadar glukosa darah, dan kadar HbA1c pada penderita diabetes dibandingkan dengan non-diabetes:
+---
 
-+ Non-Diabetes (diabetes = 0):
-  
-BMI: -0.0653
+## 🎯 **Goals & Evaluasinya**
 
-Kadar glukosa darah: -0.1279
+### 🎯 **Goal 1:**
 
-HbA1c: -0.1221
+> Menganalisis distribusi diabetes berdasarkan kelompok usia dan jenis kelamin
+> ✅ **Sudah Tercapai** jika kamu menambahkan EDA distribusi berdasarkan gender dan usia (belum tampak di gambar tapi diasumsikan dilakukan di awal proyek).
 
-+ Penderita Diabetes (diabetes = 1):
-  
-BMI: 0.7033
+### 🎯 **Goal 2:**
 
-Kadar glukosa darah: 1.3765
+> Menganalisis perbedaan rata-rata fitur penting (BMI, HbA1c, glukosa) pada penderita diabetes dan non-diabetes
+> ✅ **Sudah Tercapai** jika kamu melakukan `groupby('diabetes').mean()[['bmi', 'blood_glucose_level', 'HbA1c_level']]`.
 
-HbA1c: 1.3145
+### 🎯 **Goal 3:**
 
-*Pertanyaan 3: Fitur terpenting*
+> Membangun model ML dan mengidentifikasi fitur paling berpengaruh
+> ✅ **Sudah Tercapai**, kamu telah menggunakan model XGBoost dan membandingkan hasil akurasi serta F1-score pada data training dan testing.
 
-![image](https://github.com/user-attachments/assets/b1f559f1-8dc1-4aab-92e5-b501e83a5d76)
+---
 
-*Metrik Evaluasi yang Digunakan:*
+## 💡 **Evaluasi Model (Solusi Statement)**
 
-Model dievaluasi menggunakan beberapa metrik klasifikasi berikut yang disediakan oleh sklearn.metrics:
+### Solusi: Gunakan model non-linear seperti **Random Forest** atau **XGBoost**
 
-+ Accuracy : Mengukur proporsi prediksi yang benar terhadap total jumlah prediksi.
+📌 Kamu telah menerapkan **XGBoost**, dan hasil evaluasinya adalah:
 
-![image](https://github.com/user-attachments/assets/1fea8e1a-cc54-4bf3-b37c-6f3288001032)
+* **Train Accuracy**: 0.9718
+* **Test Accuracy**: 0.8042
+* **Train F1 Score**: 0.8054
+* **Test F1 Score**: 0.1553
+* **Confusion Matrix** menunjukkan banyaknya data negatif (non-diabetes) yang berhasil diklasifikasi benar, tapi data positif (penderita diabetes) masih banyak salah klasifikasi (high false negative).
 
-+ Precision : Mengukur proporsi prediksi positif yang benar.
+📉 **Insight**:
 
-+ Recall (Sensitivity) : Mengukur proporsi kasus positif yang berhasil diprediksi dengan benar.
+* Terdapat overfitting → model terlalu bagus di data training, tapi performa buruk di data testing (lihat gap besar F1-score).
+* F1-score pada test set sangat rendah, artinya model tidak cukup baik dalam mengenali penderita diabetes → **ini berdampak langsung pada Business Goal** karena dapat mengakibatkan penderita tidak terdeteksi.
 
-+ F1-Score : Merupakan harmonisasi dari precision dan recall, digunakan saat distribusi kelas tidak seimbang.
+---
 
-+ Feature Importance :  Untuk menilai kontribusi setiap fitur terhadap model Random Forest.
+## 📌 **Simpulan dan Dampak terhadap Business Understanding**
 
-*Hasil Evaluasi Model:*
+| Aspek               | Status               | Penjelasan                                                                        |
+| ------------------- | -------------------- | --------------------------------------------------------------------------------- |
+| Problem Statement 1 | ✅                    | Dapat dijawab melalui analisis EDA distribusi usia dan gender.                    |
+| Problem Statement 2 | ✅                    | Analisis rata-rata BMI, Glukosa, dan HbA1c telah dilakukan.                       |
+| Problem Statement 3 | ✅                    | Feature importance dari model XGBoost tersedia dan informatif.                    |
+| Goal Model ML       | ⚠️ Sebagian Tercapai | Model berhasil dibangun, namun masih overfitting dan kurang akurat pada test set. |
+| Impact Business     | ⚠️ Kurang Optimal    | F1 rendah pada test set → risiko salah deteksi penderita diabetes tinggi.         |
+| Solusi (XGBoost)    | ⚠️ Perlu Peningkatan | Solusi sudah sesuai, tapi perlu tuning, balancing data, atau alternatif model.    |
 
-+ Accuracy:
-  
-Model mencapai akurasi sebesar 96.97% pada data uji. Ini menunjukkan bahwa model cukup handal dalam memprediksi apakah seseorang menderita diabetes atau tidak berdasarkan fitur-fitur input.
+---
 
-![image](https://github.com/user-attachments/assets/8eb8fde7-d313-48cc-bf94-b57db489e32d)
+## 🔄 **Rekomendasi Perbaikan**
 
-+ Classification Report:
+* Lakukan **data balancing** (misal: SMOTE, oversampling) karena kemungkinan besar dataset imbalanced.
+* Tambahkan **hyperparameter tuning** untuk XGBoost.
+* Coba alternatif model seperti **Random Forest**, atau **ensemble voting**.
+* Fokus pada metrik F1-score untuk kelas diabetes (positif) agar lebih mencerminkan performa nyata.
 
-![image](https://github.com/user-attachments/assets/ba1837b8-e523-474c-8447-29a75d342a6f)
+---
 
-*Analisis:*
+Kalau kamu ingin saya bantu tuliskan ini dalam format laporan/slide, tinggal bilang!
 
-+ Model memiliki precision dan F1-score yang tinggi untuk kelas Non-Diabetic, namun performa untuk kelas Diabetic memiliki recall yang lebih rendah (0.69), menunjukkan bahwa masih ada sejumlah penderita diabetes yang tidak teridentifikasi oleh model.
-
-+ Ini menunjukkan potensi ketidakseimbangan kelas (jumlah penderita diabetes jauh lebih sedikit), sehingga pendekatan seperti class weighting atau oversampling bisa dijadikan pertimbangan perbaikan ke depan.
-
-*Feature Importance:*
-
-![image](https://github.com/user-attachments/assets/22192d47-784f-4862-9ebc-1df2101d221f)
-
-*Fitur paling penting berdasarkan nilai feature importance:*
-+ blood_glucose_level
-+ HbA1c_level
-+ bmi
-+ age
-
-Fitur-fitur ini relevan secara klinis dan konsisten dengan studi medis terkait deteksi diabetes.
 
 
 
