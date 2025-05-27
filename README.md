@@ -25,21 +25,17 @@ Deteksi dini diabetes dapat menyelamatkan nyawa dan mengurangi beban sistem kese
 3. Membangun model machine learning dan mengidentifikasi fitur paling berpengaruh dalam prediksi diabetes.
 
 ### Solution Statement
-1. *Solusi 1:* Gunakan model non-linear seperti Random Forest Classifier.
-
-Metrik evaluasi utama yang digunakan adalah Accuracy, Precision, Recall, dan F1-Score.
+1. *Solusi 1:* Gunakan model non-linear seperti Random Logistic .
+2. *Solusi 2:* Gunakan model non-linear seperti Random Forest Classifier.
+3. *Solusi 3:* Gunakan model non-linear seperti Random XGBoost Classifier.
 
 ## Data Understanding 
 
 Dataset yang digunakan dalam proyek ini merupakan data diabetes. Dataset ini dapat diunduh di [Kaggle : Diabetes prediction dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset).
 
-Berikut informasi pada dataset :
+![image](https://github.com/user-attachments/assets/1aca0d90-b221-4d80-8556-2a833390e1fb)
 
-+ Dataset memiliki format CSV (Comma-Seperated Values).
-+ Target: diabetes (0 = tidak, 1 = ya)
-+ Dataset memiliki 100000 sample dengan 9 fitur.
-+ Dataset memiliki 4 fitur bertipe int64(hypertension, heart_disease, blood_glucose_level, diabetes), 2 fitur bertipe object(gender, smoking_history), dan 3 fitur bertipe float64(age, bmi, HbA1c_level).
-+ Data bersih (tidak ada missing values)
+- Melihat 5 baris pertama dari dataset yang berisi data diabetes.
 
 ### Variable - variable pada dataset
 + gender – Jenis kelamin responden (Male, Female, Other)
@@ -56,15 +52,17 @@ Berikut informasi pada dataset :
 
 *Mengetahui ukuran (dimensi) dari dataset*
 
-![image](https://github.com/user-attachments/assets/eec9e862-f4ab-4829-91db-0d73c3bd4f25)
+![image](https://github.com/user-attachments/assets/eaf63b43-b66b-4e16-aedc-d07af6fe62d7)
 
-Pada tahap ini digunakan untuk mengetahui ukuran (dimensi) dari dataset yaitu 100000 baris dengan 9 kolom.
+- Pada tahap ini digunakan untuk mengetahui ukuran (dimensi) dari dataset yaitu 100000 baris dengan 9 kolom.
 
 *Memahami struktur dasar*
 
-![image](https://github.com/user-attachments/assets/301b7755-f8b9-4029-9d9a-38e43743b52b)
+![image](https://github.com/user-attachments/assets/9b0b2a0f-c521-4a6e-a677-586c746b85a3)
 
-Pada tahap ini, saya menjalankan perintah df.info() dengan tujuan untuk memahami struktur dasar dari dataset, termasuk jumlah entri, tipe data di setiap kolom, serta apakah terdapat nilai yang hilang (missing values). Hasil dari perintah ini menunjukkan bahwa dataset memiliki total 100.000 entri dengan 9 kolom, dan semua kolom memiliki jumlah nilai yang lengkap (tidak ada missing values). Selain itu, saya juga memperoleh informasi bahwa kolom-kolom dalam dataset terdiri dari tiga tipe data utama: object (untuk data kategorikal seperti gender dan smoking_history), float64 (untuk data numerik desimal seperti age, bmi, dan HbA1c_level), serta int64 (untuk data numerik bulat seperti hypertension, heart_disease, dan diabetes). Informasi ini sangat membantu dalam menentukan langkah-langkah selanjutnya seperti pra-pemrosesan data, encoding variabel kategorikal, serta pemilihan model machine learning yang sesuai dengan tipe data.
+- Terdapat 2 kolom dengan tipe object, yaitu: gender dan smoking_history. Kolom ini merupakan categorical features (fitur non-numerik).
+- Terdapat 3 kolom numerik dengan tipe data float64 yaitu: age, bmi, dan HbA1c_level . Ini merupakan fitur numerik yang merupakan hasil pengukuran secara fisik.
+- Terdapat 4 kolom numerik dengan tipe data int64, yaitu: hypertension, heart_disease, blood_glucose_level, dan diabetes. Kolom ini merupakan target fitur kita.
 
 *Melakukan analisis statistik deskriptif*
 
