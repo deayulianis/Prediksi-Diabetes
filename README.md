@@ -164,7 +164,63 @@ Di tahap ini, saya membandingkan performa tiga model — **Logistic Regression**
 
 * Namun, saat diuji pada data uji, **akurasi dan F1-score turun drastis** menjadi masing-masing sekitar **8,42%** dan **15,53%**, sama seperti model lain sebelumnya. Hal ini menunjukkan bahwa model XGBoost juga kesulitan untuk menggeneralisasi ke data baru dan **mungkin mengalami overfitting**.
 
+**Business Understanding dan Evaluasi Model**
 
+**1. Apakah sudah menjawab setiap Problem Statement?**
+
+**✅ Bagaimana prevalensi diabetes bervariasi berdasarkan kelompok usia dan jenis kelamin?**
+Ya. Pertanyaan ini dapat dijawab dengan melakukan analisis eksploratif data (EDA) menggunakan visualisasi distribusi berdasarkan kolom usia dan jenis kelamin. Hal ini memberi insight penting bagi pihak medis atau pemerintah untuk memahami segmen populasi berisiko tinggi.
+
+**✅ Berapa rata-rata BMI, kadar glukosa, dan HbA1c pada penderita diabetes vs non-diabetes?**
+Sudah dijawab melalui perbandingan nilai rata-rata tiap fitur tersebut pada dua kelompok (diabetes dan non-diabetes). Ini memberikan gambaran jelas tentang indikator kesehatan yang paling membedakan kedua kelompok.
+
+**✅ Fitur mana yang paling penting dalam memprediksi kemungkinan diabetes?**
+Telah dijawab dengan membangun model machine learning dan menganalisis feature importance, terutama pada model seperti Random Forest atau XGBoost. Fitur seperti HbA1c, Glukosa, dan BMI terbukti menjadi indikator utama.
+
+**2. Apakah berhasil mencapai setiap Goals?**
+
+| Goals                                                               | Status | Penjelasan Singkat                                                    |
+| ------------------------------------------------------------------- | ------ | --------------------------------------------------------------------- |
+| Menganalisis distribusi diabetes berdasarkan kelompok usia & gender | ✅      | Sudah dianalisis melalui visualisasi dan statistik deskriptif         |
+| Menganalisis perbedaan rata-rata BMI, HbA1c, Glukosa                | ✅      | Sudah dibedakan antara kelompok diabetes dan non-diabetes             |
+| Membangun model ML & identifikasi fitur penting                     | ✅      | Model dibangun & fitur penting sudah ditentukan (HbA1c, Glukosa, BMI) |
+
+---
+
+**3. Evaluasi Solusi yang Diberikan (Solution Statement)**
+
+**Solusi: Gunakan model non-linear seperti Random Forest dan XGBoost.**
+
+| Model              | Train Accuracy | Test Accuracy | Train F1 | Test F1 | Evaluasi    |
+| ------------------ | -------------- | ------------- | -------- | ------- | ----------- |
+| LogisticRegression | 95.95%         | 8.42%         | 72.37%   | 15.52%  | Overfitting |
+| RandomForest       | 97.13%         | 8.42%         | 79.93%   | 15.52%  | Overfitting |
+| XGBoost            | 97.18%         | 8.42%         | 80.53%   | 15.52%  | Overfitting |
+
+**🧩 Kesimpulan:**
+
+* Semua model, meskipun sangat akurat pada data pelatihan, **gagal generalisasi** ke data pengujian.
+* Ini mengindikasikan **overfitting parah** — model terlalu menghafal data latih dan tidak mengenali pola baru.
+* Solusi yang direncanakan **masih belum memberikan dampak optimal terhadap prediksi**.
+
+---
+
+**Rekomendasi Lanjutan**
+
+Untuk memastikan solusi benar-benar berdampak terhadap bisnis dan menjawab kebutuhan nyata, berikut saran lanjutan:
+
+1. **Cross-validation** untuk validasi yang lebih stabil dan adil.
+2. **Penyeimbangan data** jika terdapat ketimpangan jumlah kelas (SMOTE, oversampling, dsb).
+3. **Feature selection & regularisasi** untuk mengurangi kompleksitas dan overfitting.
+4. Tambahkan **metrik bisnis** seperti jumlah pasien benar teridentifikasi, potensi penghematan biaya kesehatan, dll.
+
+---
+
+**Kesimpulan Akhir**
+
+* Semua problem statement dan goals **sudah terjawab secara teknis**.
+* Namun, model yang dibangun **belum efektif digunakan dalam konteks nyata** karena performanya buruk pada data uji.
+* Solusi yang direncanakan **masih perlu penguatan** dengan pendekatan yang lebih robust agar berdampak langsung pada pengambilan keputusan dalam manajemen kesehatan dan penanganan diabetes.
 
 
 
