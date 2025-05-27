@@ -54,21 +54,29 @@ Berikut informasi pada dataset :
 
 ### EDA (Exploratory Data Analysis):
 
-*Prevalensi diabetes berdasarkan kelompok usia*
+*Mengetahui ukuran (dimensi) dari dataset*
 
-![image](https://github.com/user-attachments/assets/394caeb5-9f19-46b4-a5cb-42a660ad5287)
+![image](https://github.com/user-attachments/assets/eec9e862-f4ab-4829-91db-0d73c3bd4f25)
 
-*Prevalensi diabetes berdasarkan kelompok jenis kelamin*
+Pada tahap ini digunakan untuk mengetahui ukuran (dimensi) dari dataset yaitu 100000 baris dengan 9 kolom.
 
-![image](https://github.com/user-attachments/assets/b8d25b2f-dfd8-4a5e-8257-b691df0e491b)
+*Memahami struktur dasar*
 
-*Rata-rata BMI, kadar glukosa, dan HbA1c pada penderita diabetes vs non-diabetes*
+![image](https://github.com/user-attachments/assets/301b7755-f8b9-4029-9d9a-38e43743b52b)
 
-![image](https://github.com/user-attachments/assets/4616730a-e287-47b1-ae6c-8c7047c3ab0e)
+Pada tahap ini, saya menjalankan perintah df.info() dengan tujuan untuk memahami struktur dasar dari dataset, termasuk jumlah entri, tipe data di setiap kolom, serta apakah terdapat nilai yang hilang (missing values). Hasil dari perintah ini menunjukkan bahwa dataset memiliki total 100.000 entri dengan 9 kolom, dan semua kolom memiliki jumlah nilai yang lengkap (tidak ada missing values). Selain itu, saya juga memperoleh informasi bahwa kolom-kolom dalam dataset terdiri dari tiga tipe data utama: object (untuk data kategorikal seperti gender dan smoking_history), float64 (untuk data numerik desimal seperti age, bmi, dan HbA1c_level), serta int64 (untuk data numerik bulat seperti hypertension, heart_disease, dan diabetes). Informasi ini sangat membantu dalam menentukan langkah-langkah selanjutnya seperti pra-pemrosesan data, encoding variabel kategorikal, serta pemilihan model machine learning yang sesuai dengan tipe data.
 
-*Korelasi antar fitur numerik*
+*Melakukan analisis statistik deskriptif*
 
-![image](https://github.com/user-attachments/assets/ab4d2567-8a06-4d26-a57d-ec9a823e80eb)
+![image](https://github.com/user-attachments/assets/96b71590-4f7a-4054-a02a-1d8d5d2e3ffd)
+
+Pada tahap ini, saya menggunakan perintah df.describe() untuk melakukan analisis statistik deskriptif terhadap kolom-kolom numerik dalam dataset. Tujuannya adalah untuk mendapatkan gambaran umum mengenai sebaran data, nilai minimum dan maksimum, serta nilai-nilai statistik seperti rata-rata (mean), standar deviasi (std), dan nilai kuartil (25%, 50%, 75%).
+
+Hasilnya menunjukkan bahwa usia (age) peserta dalam data memiliki rentang antara 0.08 hingga 80 tahun, dengan rata-rata sekitar 41.89 tahun. Nilai indeks massa tubuh (bmi) berkisar antara 10.01 hingga 95.69, menunjukkan kemungkinan adanya outlier yang perlu ditelusuri lebih lanjut. Kolom HbA1c_level, yang berkaitan dengan kadar gula darah dalam jangka panjang, memiliki rata-rata 5.53 dengan maksimum 9.0. Sementara itu, blood_glucose_level memiliki sebaran yang cukup luas, dari 80 hingga 300, dengan rata-rata sekitar 138.
+
+Kolom hypertension, heart_disease, dan diabetes semuanya bersifat biner (0 atau 1), yang mengindikasikan ada atau tidaknya kondisi tersebut pada pasien. Dari nilai rata-rata kolom ini, diketahui bahwa hanya sebagian kecil peserta yang memiliki hipertensi (7.5%), penyakit jantung (3.9%), atau diabetes (8.5%).
+
+Informasi ini sangat berguna untuk tahap pra-pemrosesan, seperti identifikasi outlier, normalisasi, serta memahami distribusi dan proporsi data yang bisa memengaruhi performa model prediktif di tahap selanjutnya.
 
 
 ## Data Preparation
