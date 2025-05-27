@@ -76,6 +76,96 @@ Kolom hypertension, heart_disease, dan diabetes semuanya bersifat biner (0 atau 
 
 Informasi ini sangat berguna untuk tahap pra-pemrosesan, seperti identifikasi outlier, normalisasi, serta memahami distribusi dan proporsi data yang bisa memengaruhi performa model prediktif di tahap selanjutnya.
 
+*Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
+
+![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
+
+Dari output terlihat bahwa:
+- Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
+
+*Deteksi Outlier Ekstrem dengan IQR Method dan Visualisasi*
+
+![image](https://github.com/user-attachments/assets/db7a7503-d01e-44ee-a27b-b913d7c390ce)
+
+Pada tahap ini, saya melakukan eksplorasi awal terhadap fitur **BMI** dengan tujuan memahami **distribusi dan karakteristik datanya**.
+
+Visualisasi boxplot digunakan untuk mengidentifikasi **sebaran nilai dan outlier**, yang menunjukkan banyak nilai ekstrem di sisi kanan (BMI tinggi).
+
+Sementara itu, histogram menampilkan bentuk distribusi yang **skew ke kanan**, artinya sebagian besar individu memiliki BMI di bawah rata-rata, namun terdapat sejumlah kecil dengan nilai BMI sangat tinggi.
+
+Analisis ini penting sebagai dasar untuk **preprocessing**, seperti penanganan outlier atau transformasi data sebelum pemodelan.
+
+*Menghitung IQR (Interquartile Range*
+
+![image](https://github.com/user-attachments/assets/9504545b-a497-4f54-bc4b-919e34687726)
+
+Pada tahap ini, saya menghitung IQR (Interquartile Range) untuk fitur BMI guna mengidentifikasi batas bawah dan atas deteksi outlier.
+
+Hasilnya menunjukkan:
+
+IQR = 5.87
+
+Batas bawah = 14.96
+
+Batas atas = 38.45
+
+Nilai BMI tertinggi = 95.69
+
+Karena nilai tertinggi jauh di atas batas atas, ini menegaskan bahwa dataset mengandung outlier ekstrem yang perlu dipertimbangkan dalam proses cleaning atau transformasi data sebelum pemodelan.
+
+*Menghapus outlier ekstrem pada fitur BMI*
+
+![image](https://github.com/user-attachments/assets/3317250e-22c7-47f8-932a-40260963e1a9)
+
+Pada tahap ini, saya menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
+
+Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
+
+Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
+
+*Memeriksa ukuran awal dataset* 
+
+![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
+
+Pada tahap ini, saya memeriksa ukuran awal dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
+
+Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
+
+*Memvisualisasikan kembali boxplot fitur BMI*
+
+![image](https://github.com/user-attachments/assets/c9cf3307-0b20-4c4f-afa8-aa1ca48293d3)
+
+Pada tahap ini, saya memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
+
+Tujuannya adalah untuk mengevaluasi hasil pembersihan, memastikan bahwa nilai-nilai ekstrem di atas batas atas telah berhasil dihapus.
+
+Hasil boxplot menunjukkan distribusi yang lebih rapat dan simetris, tanpa adanya outlier ekstrem, sehingga data lebih bersih dan siap digunakan untuk proses pemodelan machine learning.
+
+*Memeriksa nilai yang hilang (missing values)*
+
+![image](https://github.com/user-attachments/assets/8acbe93e-4dd8-4ee1-a1e8-c80147dfc229)
+
+Pada tahap ini, saya memeriksa nilai yang hilang (missing values) di seluruh kolom dataset menggunakan df.isnull().sum().
+
+Hasilnya menunjukkan bahwa tidak ada nilai yang hilang di semua fitur (semua bernilai 0), sehingga tidak diperlukan proses imputasi atau penanganan missing value.
+
+Data ini sudah lengkap dan siap untuk tahap selanjutnya, seperti eksplorasi lebih lanjut atau pemodelan.
+
+*Mengelompokkan fitur menjadi dua jenis utama*
+
+![image](https://github.com/user-attachments/assets/c741a9ff-c65d-4bec-a40e-a52e766eb1eb)
+
+Pada tahap ini, saya mengelompokkan fitur menjadi dua jenis utama:
+
+numerical_features: berisi fitur numerik seperti usia, BMI, kadar HbA1c, tekanan darah, dan kadar glukosa. Termasuk juga variabel target diabetes karena berupa nilai biner (0 atau 1).
+
+categorical_features: berisi fitur kategorikal seperti jenis kelamin dan riwayat merokok.
+
+Tujuan pengelompokan ini adalah untuk memudahkan proses analisis, visualisasi, dan preprocessing, karena fitur numerik dan kategorikal biasanya memerlukan perlakuan yang berbeda dalam pemodelan machine learning.
+
+
+
+
 
 ## Data Preparation
 + Menghapus entri dengan nilai gender “Other”
