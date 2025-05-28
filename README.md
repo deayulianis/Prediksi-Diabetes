@@ -70,9 +70,9 @@ Dataset yang digunakan dalam proyek ini merupakan data diabetes. Dataset ini dap
 
 Pada tahap ini, saya menggunakan perintah df.describe() untuk melakukan analisis statistik deskriptif terhadap kolom-kolom numerik dalam dataset. Tujuannya adalah untuk mendapatkan gambaran umum mengenai sebaran data, nilai minimum dan maksimum, serta nilai-nilai statistik seperti rata-rata (mean), standar deviasi (std), dan nilai kuartil (25%, 50%, 75%).
 
-Hasilnya menunjukkan bahwa usia (age) peserta dalam data memiliki rentang antara 0.08 hingga 80 tahun, dengan rata-rata sekitar 41.89 tahun. Nilai indeks massa tubuh (bmi) berkisar antara 10.01 hingga 95.69, menunjukkan kemungkinan adanya outlier yang perlu ditelusuri lebih lanjut. Kolom HbA1c_level, yang berkaitan dengan kadar gula darah dalam jangka panjang, memiliki rata-rata 5.53 dengan maksimum 9.0. Sementara itu, blood_glucose_level memiliki sebaran yang cukup luas, dari 80 hingga 300, dengan rata-rata sekitar 138.
+- Hasilnya menunjukkan bahwa usia (age) peserta dalam data memiliki rentang antara 0.08 hingga 80 tahun, dengan rata-rata sekitar 41.89 tahun. Nilai indeks massa tubuh (bmi) berkisar antara 10.01 hingga 95.69, menunjukkan kemungkinan adanya outlier yang perlu ditelusuri lebih lanjut. Kolom HbA1c_level, yang berkaitan dengan kadar gula darah dalam jangka panjang, memiliki rata-rata 5.53 dengan maksimum 9.0. Sementara itu, blood_glucose_level memiliki sebaran yang cukup luas, dari 80 hingga 300, dengan rata-rata sekitar 138.
 
-Kolom hypertension, heart_disease, dan diabetes semuanya bersifat biner (0 atau 1), yang mengindikasikan ada atau tidaknya kondisi tersebut pada pasien. Dari nilai rata-rata kolom ini, diketahui bahwa hanya sebagian kecil peserta yang memiliki hipertensi (7.5%), penyakit jantung (3.9%), atau diabetes (8.5%).
+- Kolom hypertension, heart_disease, dan diabetes semuanya bersifat biner (0 atau 1), yang mengindikasikan ada atau tidaknya kondisi tersebut pada pasien. Dari nilai rata-rata kolom ini, diketahui bahwa hanya sebagian kecil peserta yang memiliki hipertensi (7.5%), penyakit jantung (3.9%), atau diabetes (8.5%).
 
 Informasi ini sangat berguna untuk tahap pra-pemrosesan, seperti identifikasi outlier, normalisasi, serta memahami distribusi dan proporsi data yang bisa memengaruhi performa model prediktif di tahap selanjutnya.
 
@@ -103,13 +103,13 @@ Pada tahap ini, saya menghitung IQR (Interquartile Range) untuk fitur BMI guna m
 
 Hasilnya menunjukkan:
 
-IQR = 5.87
+- IQR = 5.87
 
-Batas bawah = 14.96
+- Batas bawah = 14.96
 
-Batas atas = 38.45
+- Batas atas = 38.45
 
-Nilai BMI tertinggi = 95.69
+- Nilai BMI tertinggi = 95.69
 
 Karena nilai tertinggi jauh di atas batas atas, ini menegaskan bahwa dataset mengandung outlier ekstrem yang perlu dipertimbangkan dalam proses cleaning atau transformasi data sebelum pemodelan.
 
@@ -123,11 +123,11 @@ Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak perf
 
 Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
 
-*Memeriksa ukuran awal dataset* 
+*Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
 
 ![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
 
-Pada tahap ini, saya memeriksa ukuran awal dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
+Pada tahap ini, saya memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
 
 Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
 
@@ -150,6 +150,10 @@ Pada tahap ini, saya memeriksa nilai yang hilang (missing values) di seluruh kol
 Hasilnya menunjukkan bahwa tidak ada nilai yang hilang di semua fitur (semua bernilai 0), sehingga tidak diperlukan proses imputasi atau penanganan missing value.
 
 Data ini sudah lengkap dan siap untuk tahap selanjutnya, seperti eksplorasi lebih lanjut atau pemodelan.
+
+### Univariate Analysis
+
+### Categorical Feature
 
 *Mengelompokkan fitur menjadi dua jenis utama*
 
@@ -200,6 +204,9 @@ Visualisasi bar chart mendukung hal ini dengan menunjukkan dua batang tertinggi 
 
 Informasi ini penting untuk diperhatikan dalam proses pra-pemodelan, terutama jika fitur smoking_history akan digunakan sebagai variabel input. Proporsi yang tidak seimbang dan keberadaan kategori No Info menunjukkan kemungkinan perlunya strategi penanganan data tambahan, seperti encoding khusus atau pemrosesan data hilang.
 
+### Numerical Feature
+
+
 *Eksplorasi data awal terhadap fitur-fitur numerikal*
 
 ![image](https://github.com/user-attachments/assets/0497aabe-0e35-4765-bd34-556f8b547c81)
@@ -228,7 +235,7 @@ Hasil eksplorasi ini memberikan insight awal yang penting:
 
 Langkah selanjutnya yang dapat dilakukan termasuk transformasi data (seperti normalisasi atau log transform), penanganan outlier, dan balancing data bila diperlukan untuk keperluan pemodelan.
 
-## Exploratory Data Analysis - Multivariate Analysis
+### Multivariate Analysis
 
 ### Categorical Feature
 
