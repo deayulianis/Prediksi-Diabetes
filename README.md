@@ -95,7 +95,7 @@ Sementara itu, histogram menampilkan bentuk distribusi yang **skew ke kanan**, a
 
 Analisis ini penting sebagai dasar untuk **preprocessing**, seperti penanganan outlier atau transformasi data sebelum pemodelan.
 
-*Menghitung IQR (Interquartile Range*
+*Menghitung IQR (Interquartile Range)*
 
 ![image](https://github.com/user-attachments/assets/9504545b-a497-4f54-bc4b-919e34687726)
 
