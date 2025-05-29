@@ -68,7 +68,7 @@ Dataset yang digunakan dalam proyek ini merupakan data diabetes. Dataset ini dap
 
 ![image](https://github.com/user-attachments/assets/96b71590-4f7a-4054-a02a-1d8d5d2e3ffd)
 
-Pada tahap ini, saya menggunakan perintah df.describe() untuk melakukan analisis statistik deskriptif terhadap kolom-kolom numerik dalam dataset. Tujuannya adalah untuk mendapatkan gambaran umum mengenai sebaran data, nilai minimum dan maksimum, serta nilai-nilai statistik seperti rata-rata (mean), standar deviasi (std), dan nilai kuartil (25%, 50%, 75%).
+Pada tahap ini, perintah df.describe() untuk melakukan analisis statistik deskriptif terhadap kolom-kolom numerik dalam dataset. Tujuannya adalah untuk mendapatkan gambaran umum mengenai sebaran data, nilai minimum dan maksimum, serta nilai-nilai statistik seperti rata-rata (mean), standar deviasi (std), dan nilai kuartil (25%, 50%, 75%).
 
 - Hasilnya menunjukkan bahwa usia (age) peserta dalam data memiliki rentang antara 0.08 hingga 80 tahun, dengan rata-rata sekitar 41.89 tahun. Nilai indeks massa tubuh (bmi) berkisar antara 10.01 hingga 95.69, menunjukkan kemungkinan adanya outlier yang perlu ditelusuri lebih lanjut. Kolom HbA1c_level, yang berkaitan dengan kadar gula darah dalam jangka panjang, memiliki rata-rata 5.53 dengan maksimum 9.0. Sementara itu, blood_glucose_level memiliki sebaran yang cukup luas, dari 80 hingga 300, dengan rata-rata sekitar 138.
 
@@ -80,7 +80,7 @@ Informasi ini sangat berguna untuk tahap pra-pemrosesan, seperti identifikasi ou
 
 ![image](https://github.com/user-attachments/assets/db7a7503-d01e-44ee-a27b-b913d7c390ce)
 
-Pada tahap ini, saya melakukan eksplorasi awal terhadap fitur **BMI** dengan tujuan memahami **distribusi dan karakteristik datanya**.
+Pada tahap ini, melakukan eksplorasi awal terhadap fitur **BMI** dengan tujuan memahami **distribusi dan karakteristik datanya**.
 
 Visualisasi boxplot digunakan untuk mengidentifikasi **sebaran nilai dan outlier**, yang menunjukkan banyak nilai ekstrem di sisi kanan (BMI tinggi).
 
@@ -92,7 +92,7 @@ Analisis ini penting sebagai dasar untuk **preprocessing**, seperti penanganan o
 
 ![image](https://github.com/user-attachments/assets/9504545b-a497-4f54-bc4b-919e34687726)
 
-Pada tahap ini, saya menghitung IQR (Interquartile Range) untuk fitur BMI guna mengidentifikasi batas bawah dan atas deteksi outlier.
+Pada tahap ini, menghitung IQR (Interquartile Range) untuk fitur BMI guna mengidentifikasi batas bawah dan atas deteksi outlier.
 
 Hasilnya menunjukkan:
 
@@ -110,7 +110,7 @@ Karena nilai tertinggi jauh di atas batas atas, ini menegaskan bahwa dataset men
 
 ![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
 
-Pada tahap ini, saya memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
+Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
 
 Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
 
@@ -118,7 +118,7 @@ Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data set
 
 ![image](https://github.com/user-attachments/assets/c9cf3307-0b20-4c4f-afa8-aa1ca48293d3)
 
-Pada tahap ini, saya memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
+Pada tahap ini, memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
 
 Tujuannya adalah untuk mengevaluasi hasil pembersihan, memastikan bahwa nilai-nilai ekstrem di atas batas atas telah berhasil dihapus.
 
@@ -128,7 +128,7 @@ Hasil boxplot menunjukkan distribusi yang lebih rapat dan simetris, tanpa adanya
 
 ![image](https://github.com/user-attachments/assets/8acbe93e-4dd8-4ee1-a1e8-c80147dfc229)
 
-Pada tahap ini, saya memeriksa nilai yang hilang (missing values) di seluruh kolom dataset menggunakan df.isnull().sum().
+Pada tahap ini, memeriksa nilai yang hilang (missing values) di seluruh kolom dataset menggunakan df.isnull().sum().
 
 Hasilnya menunjukkan bahwa tidak ada nilai yang hilang di semua fitur (semua bernilai 0), sehingga tidak diperlukan proses imputasi atau penanganan missing value.
 
@@ -142,7 +142,7 @@ Data ini sudah lengkap dan siap untuk tahap selanjutnya, seperti eksplorasi lebi
 
 ![image](https://github.com/user-attachments/assets/c741a9ff-c65d-4bec-a40e-a52e766eb1eb)
 
-Pada tahap ini, saya mengelompokkan fitur menjadi dua jenis utama:
+Pada tahap ini, mengelompokkan fitur menjadi dua jenis utama:
 
 numerical_features: berisi fitur numerik seperti usia, BMI, kadar HbA1c, tekanan darah, dan kadar glukosa. Termasuk juga variabel target diabetes karena berupa nilai biner (0 atau 1).
 
@@ -154,7 +154,7 @@ Tujuan pengelompokan ini adalah untuk memudahkan proses analisis, visualisasi, d
 
 ![image](https://github.com/user-attachments/assets/5fc8277a-942a-4049-bfd3-39dd84ad4ef7)
 
-Pada tahap ini, saya melakukan eksplorasi awal terhadap fitur kategorikal gender untuk memahami distribusi datanya.
+Pada tahap ini, melakukan eksplorasi awal terhadap fitur kategorikal gender untuk memahami distribusi datanya.
 
 Distribusi jumlah sampel untuk masing-masing kategori pada fitur gender adalah sebagai berikut:
 
@@ -170,7 +170,7 @@ Visualisasi bar chart juga menunjukkan perbedaan distribusi yang cukup signifika
 
 ![image](https://github.com/user-attachments/assets/4a057c8c-a753-4558-afd5-667326316e5f)
 
-Pada tahap ini, saya melakukan eksplorasi awal terhadap fitur kategorikal smoking_history untuk memahami distribusi data berdasarkan riwayat merokok.
+Pada tahap ini, melakukan eksplorasi awal terhadap fitur kategorikal smoking_history untuk memahami distribusi data berdasarkan riwayat merokok.
 
 Distribusi jumlah sampel untuk masing-masing kategori adalah sebagai berikut:
 
@@ -194,7 +194,7 @@ Informasi ini penting untuk diperhatikan dalam proses pra-pemodelan, terutama ji
 
 ![image](https://github.com/user-attachments/assets/0497aabe-0e35-4765-bd34-556f8b547c81)
 
-Pada tahap ini, saya melakukan eksplorasi data awal terhadap fitur-fitur numerikal menggunakan histogram. Visualisasi ini membantu memahami distribusi nilai dari setiap fitur.
+Pada tahap ini, melakukan eksplorasi data awal terhadap fitur-fitur numerikal menggunakan histogram. Visualisasi ini membantu memahami distribusi nilai dari setiap fitur.
 
 Berikut ringkasan pengamatan untuk masing-masing fitur:
 
@@ -224,7 +224,7 @@ Langkah selanjutnya yang dapat dilakukan termasuk transformasi data (seperti nor
 
 ![image](https://github.com/user-attachments/assets/38edb724-822a-4f1d-8ec9-9bde8df7f6cb)
 
-Pada tahap ini, saya menganalisis **rata-rata kemunculan diabetes** (`diabetes` bernilai 1) terhadap dua fitur kategorikal: `gender` dan `smoking_history`. Nilai rata-rata pada grafik batang ini merepresentasikan **proporsi individu yang menderita diabetes** dalam setiap kategori.
+Pada tahap ini, menganalisis **rata-rata kemunculan diabetes** (`diabetes` bernilai 1) terhadap dua fitur kategorikal: `gender` dan `smoking_history`. Nilai rata-rata pada grafik batang ini merepresentasikan **proporsi individu yang menderita diabetes** dalam setiap kategori.
 
 1. **Rata-rata diabetes terhadap gender**
 
@@ -261,7 +261,7 @@ Langkah selanjutnya dapat berupa uji statistik untuk menguji signifikansi hubung
 
 ![image](https://github.com/user-attachments/assets/02ab9651-dd96-4048-8554-1d558cc8803e)
 
-Pada tahap ini, saya menggunakan `sns.pairplot()` dengan `diag_kind='kde'` untuk **mengamati hubungan antar fitur numerik** dalam dataset, serta distribusi dari masing-masing fitur.
+Pada tahap ini, menggunakan `sns.pairplot()` dengan `diag_kind='kde'` untuk **mengamati hubungan antar fitur numerik** dalam dataset, serta distribusi dari masing-masing fitur.
 
 Visualisasi ini membantu:
 
@@ -300,7 +300,7 @@ Kesimpulan:
 
 ![image](https://github.com/user-attachments/assets/b757a80e-5d5b-4ed2-807e-756ba183efc5)
 
-Pada tahap ini saya menggunakan heatmap dari `seaborn` untuk memvisualisasikan korelasi antar fitur numerik, dengan tujuan **mengetahui hubungan linear antar fitur, khususnya terhadap target `diabetes`.**
+Pada tahap ini menggunakan heatmap dari `seaborn` untuk memvisualisasikan korelasi antar fitur numerik, dengan tujuan **mengetahui hubungan linear antar fitur, khususnya terhadap target `diabetes`.**
 
 **Langkah-langkah:**
 
@@ -329,7 +329,7 @@ Dari output terlihat bahwa:
 
 ![image](https://github.com/user-attachments/assets/2e6000b3-28db-4e0a-aee5-6d6a1e4dc16c)
 
-Pada tahap ini saya menghapus dua kolom yaitu 'heart_disease' dan 'hypertension' dari DataFrame df dengan tujuan untuk menyederhanakan data dan hanya mempertahankan fitur-fitur yang relevan untuk analisis atau pemodelan lebih lanjut.
+Pada tahap ini menghapus dua kolom yaitu 'heart_disease' dan 'hypertension' dari DataFrame df dengan tujuan untuk menyederhanakan data dan hanya mempertahankan fitur-fitur yang relevan untuk analisis atau pemodelan lebih lanjut.
 
 Penjelasan:
 
@@ -343,7 +343,7 @@ df.head()
 
 ![image](https://github.com/user-attachments/assets/3317250e-22c7-47f8-932a-40260963e1a9)
 
-Pada tahap ini, saya menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
+Pada tahap ini, menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
 
 Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
 
@@ -353,7 +353,7 @@ Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih rep
 
 ![image](https://github.com/user-attachments/assets/35871943-d89c-4a28-9f10-6dc2c1594628)
 
-Pada tahap ini **saya melakukan encoding terhadap variabel kategorikal ‘gender’ dan ‘smoking\_history’ menggunakan teknik one-hot encoding** dengan tujuan **untuk mengubah data kategorikal menjadi format numerik biner agar bisa digunakan dalam pemodelan machine learning**.
+Pada tahap ini **melakukan encoding terhadap variabel kategorikal ‘gender’ dan ‘smoking\_history’ menggunakan teknik one-hot encoding** dengan tujuan **untuk mengubah data kategorikal menjadi format numerik biner agar bisa digunakan dalam pemodelan machine learning**.
 
 Penjelasan:
 
@@ -376,7 +376,7 @@ Penjelasan:
 
 ![image](https://github.com/user-attachments/assets/25d68960-b976-4b4c-8442-0f4ab22690a6)
 
-Pada tahap ini **saya membagi data menjadi data latih (training set) dan data uji (testing set)** dengan tujuan **untuk mempersiapkan proses pelatihan dan evaluasi model machine learning, di mana model akan belajar dari data latih dan diuji performanya menggunakan data uji**.
+Pada tahap ini **membagi data menjadi data latih (training set) dan data uji (testing set)** dengan tujuan **untuk mempersiapkan proses pelatihan dan evaluasi model machine learning, di mana model akan belajar dari data latih dan diuji performanya menggunakan data uji**.
 
 Penjelasan tambahan:
 
@@ -396,7 +396,7 @@ Penjelasan tambahan:
 
 ![image](https://github.com/user-attachments/assets/d8f14cec-d99f-44ef-82f6-db15c5aab9db)
 
-Pada tahap ini **saya mencetak jumlah sampel/data pada keseluruhan dataset, data latih, dan data uji** dengan tujuan **untuk memastikan bahwa proses pembagian data sebelumnya berjalan dengan benar dan proporsinya sesuai yang diharapkan**.
+Pada tahap ini **mencetak jumlah sampel/data pada keseluruhan dataset, data latih, dan data uji** dengan tujuan **untuk memastikan bahwa proses pembagian data sebelumnya berjalan dengan benar dan proporsinya sesuai yang diharapkan**.
 
 Penjelasan:
 
@@ -408,7 +408,7 @@ Penjelasan:
 
 ![image](https://github.com/user-attachments/assets/909e48da-5324-41fa-bf3e-3e283bd87cab)
 
-Pada tahap ini **saya melakukan normalisasi atau standarisasi terhadap fitur-fitur numerik menggunakan `StandardScaler` dari scikit-learn** dengan tujuan **untuk menyamakan skala nilai dari setiap fitur numerik sehingga model machine learning dapat belajar dengan lebih baik dan tidak berat sebelah terhadap fitur dengan skala yang lebih besar**.
+Pada tahap ini **melakukan normalisasi atau standarisasi terhadap fitur-fitur numerik menggunakan `StandardScaler` dari scikit-learn** dengan tujuan **untuk menyamakan skala nilai dari setiap fitur numerik sehingga model machine learning dapat belajar dengan lebih baik dan tidak berat sebelah terhadap fitur dengan skala yang lebih besar**.
 
 Penjelasan langkah demi langkah:
 
@@ -431,7 +431,7 @@ Penjelasan langkah demi langkah:
 
 ![image](https://github.com/user-attachments/assets/132dec40-4535-41fd-81da-fc96b49befbe)
 
-Pada tahap ini **saya menampilkan statistik deskriptif dari fitur numerik dalam data latih (X\_train) setelah dilakukan proses normalisasi atau standardisasi** dengan tujuan **untuk memeriksa distribusi data numerik dan memastikan bahwa data telah berskala (scaled) dengan benar, yaitu memiliki rata-rata 0 dan standar deviasi 1**.
+Pada tahap ini **menampilkan statistik deskriptif dari fitur numerik dalam data latih (X\_train) setelah dilakukan proses normalisasi atau standardisasi** dengan tujuan **untuk memeriksa distribusi data numerik dan memastikan bahwa data telah berskala (scaled) dengan benar, yaitu memiliki rata-rata 0 dan standar deviasi 1**.
 
 Penjelasan:
 
@@ -446,7 +446,7 @@ Dari hasil ini terlihat:
 
 ## Modelling
 
-Pada tahap ini, saya mengembangkan model machine learning menggunakan **tiga algoritma berbeda**, yaitu:
+Pada tahap ini, mengembangkan model machine learning menggunakan **tiga algoritma berbeda**, yaitu:
 
 * **Logistic Regression**
 * **Random Forest**
@@ -512,7 +512,7 @@ XGBoost dikenal karena:
 
 ![image](https://github.com/user-attachments/assets/c44e50be-cac6-43fa-a1be-6065ea1c81a0)
 
-Pada tahap ini **saya menyiapkan sebuah DataFrame kosong bernama `models` untuk menyimpan hasil evaluasi dari beberapa algoritma machine learning** dengan tujuan **agar hasil akurasi dan metrik lainnya dari masing-masing model dapat dicatat, dibandingkan, dan dianalisis dengan lebih terstruktur**.
+Pada tahap ini **menyiapkan sebuah DataFrame kosong bernama `models` untuk menyimpan hasil evaluasi dari beberapa algoritma machine learning** dengan tujuan **agar hasil akurasi dan metrik lainnya dari masing-masing model dapat dicatat, dibandingkan, dan dianalisis dengan lebih terstruktur**.
 
 Penjelasan:
 
@@ -536,7 +536,7 @@ Tujuannya adalah untuk menyimpan dan membandingkan performa dari ketiga model te
 
 ![image](https://github.com/user-attachments/assets/827f44ea-fc2d-4495-9fa6-26459141df2a)
 
-Pada tahap ini **saya melatih model Logistic Regression menggunakan data latih, lalu mengukur performanya dengan menghitung akurasi dan F1-score baik pada data latih maupun data uji**.
+Pada tahap ini **melatih model Logistic Regression menggunakan data latih, lalu mengukur performanya dengan menghitung akurasi dan F1-score baik pada data latih maupun data uji**.
 
 Penjelasan singkat:
 
@@ -552,7 +552,7 @@ Dengan cara ini, saya dapat melihat seberapa baik model Logistic Regression dala
 
 ![image](https://github.com/user-attachments/assets/e2ca8473-cf03-4704-a4b5-441ea44bb387)
 
-Pada tahap ini **saya melatih model Random Forest menggunakan algoritma `RandomForestClassifier` dari pustaka `sklearn.ensemble`**. Model ini digunakan dengan konfigurasi sebagai berikut:
+Pada tahap ini **melatih model Random Forest menggunakan algoritma `RandomForestClassifier` dari pustaka `sklearn.ensemble`**. Model ini digunakan dengan konfigurasi sebagai berikut:
 
 * `n_estimators=100`: Menggunakan 100 pohon keputusan (decision trees).
 * `max_depth=10`: Mengatur kedalaman maksimum setiap pohon hingga 10 untuk menghindari overfitting.
@@ -574,7 +574,7 @@ Model Random Forest ini digunakan sebagai baseline yang kuat karena kemampuannya
 
 ![image](https://github.com/user-attachments/assets/b7421833-8089-45c4-a2c6-91d8410ad08c)
 
-Selanjutnya, saya juga melatih model **XGBoost menggunakan `XGBClassifier` dari pustaka `xgboost`**, dengan parameter sebagai berikut:
+Selanjutnya, juga melatih model **XGBoost menggunakan `XGBClassifier` dari pustaka `xgboost`**, dengan parameter sebagai berikut:
 
 * `n_estimators=50`: Jumlah boosting rounds atau pohon yang akan dibuat sebanyak 50.
 * `max_depth=5`: Kedalaman maksimum setiap pohon dibatasi hingga 5 untuk menghindari kompleksitas berlebih.
@@ -595,7 +595,7 @@ Model XGBoost dikenal dengan performanya yang unggul dalam berbagai kompetisi ma
 
 ![image](https://github.com/user-attachments/assets/d40d5f5b-baeb-46cb-8bb3-6a4b324c34c3)
 
-Pada tahap ini **saya menampilkan tabel hasil evaluasi performa ketiga model machine learning yang sudah dilatih dan diuji** dengan tujuan **untuk membandingkan dan melihat bagaimana masing-masing model bekerja pada data latih dan data uji berdasarkan metrik akurasi dan F1-score**.
+Pada tahap ini **menampilkan tabel hasil evaluasi performa ketiga model machine learning yang sudah dilatih dan diuji** dengan tujuan **untuk membandingkan dan melihat bagaimana masing-masing model bekerja pada data latih dan data uji berdasarkan metrik akurasi dan F1-score**.
 
 Penjelasan:
 
@@ -609,7 +609,7 @@ Walaupun model tampak sangat baik saat dilatih, performanya jauh menurun di data
 
 ![image](https://github.com/user-attachments/assets/37ff815e-14c0-4d7a-9ee1-b2fd5f79288a)
 
-Pada tahap ini **saya membuat sebuah fungsi `evaluate_model` untuk mengevaluasi performa model machine learning secara lengkap dan visual, baik pada data latih maupun data uji** dengan tujuan **memudahkan proses pengecekan hasil model sekaligus menampilkan metrik penting dan visualisasi confusion matrix agar lebih mudah dipahami**.
+Pada tahap ini **membuat sebuah fungsi `evaluate_model` untuk mengevaluasi performa model machine learning secara lengkap dan visual, baik pada data latih maupun data uji** dengan tujuan **memudahkan proses pengecekan hasil model sekaligus menampilkan metrik penting dan visualisasi confusion matrix agar lebih mudah dipahami**.
 
 Penjelasan:
 
@@ -624,7 +624,7 @@ Dengan fungsi ini, proses evaluasi model jadi lebih praktis, rapi, dan informati
 
 ![image](https://github.com/user-attachments/assets/57225d87-8a3b-4ecf-9852-46cae586c9c8)
 
-Pada tahap ini, saya menjalankan fungsi `evaluate_model` untuk mengevaluasi performa model Logistic Regression yang sudah dilatih. Fungsi ini memberikan hasil evaluasi akurasi dan F1-score baik pada data latih maupun data uji.
+Pada tahap ini, menjalankan fungsi `evaluate_model` untuk mengevaluasi performa model Logistic Regression yang sudah dilatih. Fungsi ini memberikan hasil evaluasi akurasi dan F1-score baik pada data latih maupun data uji.
 
 Hasilnya menunjukkan bahwa model Logistic Regression memiliki akurasi yang sangat tinggi di data latih (sekitar 95,95%) dan F1-score yang cukup bagus (72,37%). Namun, saat diuji pada data uji, akurasi turun drastis menjadi sekitar 8,42%, dan F1-score juga rendah di angka 15,53%.
 
@@ -632,7 +632,7 @@ Ini artinya model mampu mempelajari data latih dengan baik, tapi performanya kur
 
 ![image](https://github.com/user-attachments/assets/ab43ef65-ccaa-4d3c-a4b4-fdfadd082ee0)
 
-Di tahap ini, saya mengevaluasi model Random Forest menggunakan fungsi `evaluate_model`. Dari hasilnya, model ini menunjukkan performa yang sangat baik di data latih, dengan akurasi sekitar 97,13% dan F1-score sekitar 79,93%, yang menandakan model bisa mengenali pola pada data latih dengan sangat baik.
+Di tahap ini, mengevaluasi model Random Forest menggunakan fungsi `evaluate_model`. Dari hasilnya, model ini menunjukkan performa yang sangat baik di data latih, dengan akurasi sekitar 97,13% dan F1-score sekitar 79,93%, yang menandakan model bisa mengenali pola pada data latih dengan sangat baik.
 
 Namun, ketika diuji pada data uji, akurasi turun drastis menjadi sekitar 8,42% dan F1-score hanya sekitar 15,53%, mirip dengan hasil Logistic Regression. Ini menandakan model tidak bisa menggeneralisasi dengan baik ke data baru, mungkin karena overfitting atau masalah lain pada data uji.
 
@@ -640,7 +640,7 @@ Jadi, walaupun model terlihat hebat di data latih, performa di data uji sangat b
 
 ![image](https://github.com/user-attachments/assets/0b7e72b8-b73b-46a4-826d-18af01a3f5c7)
 
-Di tahap ini, saya mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`. Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan akurasi sekitar 97,18% dan F1-score sebesar 80,54%. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
+Di tahap ini, mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`. Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan akurasi sekitar 97,18% dan F1-score sebesar 80,54%. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
 
 Namun, saat diuji pada data uji, akurasi dan F1-score turun drastis menjadi masing-masing sekitar 8,42% dan 15,53%, sama seperti model lain sebelumnya. Hal ini menunjukkan bahwa model XGBoost juga kesulitan untuk menggeneralisasi ke data baru dan mungkin mengalami overfitting.
 
@@ -650,7 +650,7 @@ Singkatnya, meskipun model tampak hebat saat dilatih, hasil di data uji sangat b
 
 **Penjelasan Kode**
 
-Di bagian ini, saya membuat visualisasi untuk membandingkan performa tiga model machine learning (Logistic Regression, Random Forest, dan XGBoost) berdasarkan metrik **accuracy** dan **F1-score**, baik di data pelatihan (**train**) maupun data pengujian (**test**). Langkah-langkahnya sebagai berikut:
+Di bagian ini, membuat visualisasi untuk membandingkan performa tiga model machine learning (Logistic Regression, Random Forest, dan XGBoost) berdasarkan metrik **accuracy** dan **F1-score**, baik di data pelatihan (**train**) maupun data pengujian (**test**). Langkah-langkahnya sebagai berikut:
 
 1. **Mengambil data dari DataFrame `models`**:
 
@@ -670,7 +670,7 @@ Di bagian ini, saya membuat visualisasi untuk membandingkan performa tiga model 
 
 **Penjelasan Grafik**
 
-Di tahap ini, saya membandingkan performa tiga model — **Logistic Regression**, **Random Forest**, dan **XGBoost** — dengan menggunakan metrik akurasi dan F1-score. Dari grafik yang ditampilkan, kita bisa menyimpulkan hal berikut:
+Di tahap ini, membandingkan performa tiga model — **Logistic Regression**, **Random Forest**, dan **XGBoost** — dengan menggunakan metrik akurasi dan F1-score. Dari grafik yang ditampilkan, kita bisa menyimpulkan hal berikut:
 
 🔹 Logistic Regression
 
@@ -685,7 +685,7 @@ Di tahap ini, saya membandingkan performa tiga model — **Logistic Regression**
 
 🔹 XGBoost
 
-* Di tahap ini, saya mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`.
+* Di tahap ini, mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`.
   Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan akurasi sekitar **97,18%** dan F1-score sebesar **80,54%**. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
 
 * Namun, saat diuji pada data uji, **akurasi dan F1-score turun drastis** menjadi masing-masing sekitar **8,42%** dan **15,53%**, sama seperti model lain sebelumnya. Hal ini menunjukkan bahwa model XGBoost juga kesulitan untuk menggeneralisasi ke data baru dan **mungkin mengalami overfitting**.
