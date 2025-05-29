@@ -446,11 +446,69 @@ Dari hasil ini terlihat:
 
 ## Modelling
 
-Pada tahap ini, kita akan mengembangkan model machine learning dengan tiga algoritma. Kemudian, kita akan mengevaluasi performa masing-masing algoritma dan menentukan algoritma mana yang memberikan hasil prediksi terbaik. Ketiga algoritma yang akan kita gunakan, antara lain:
+Pada tahap ini, saya mengembangkan model machine learning menggunakan **tiga algoritma berbeda**, yaitu:
 
-- Logistic Regression
-- Random Forest
-- XGBoost Classifier
+* **Logistic Regression**
+* **Random Forest**
+* **XGBoost Classifier**
+
+Tujuan dari penggunaan ketiga model ini adalah untuk membandingkan performa mereka dalam memprediksi target secara akurat dan memilih model terbaik berdasarkan metrik evaluasi seperti **akurasi** dan **F1-score**. Berikut adalah penjelasan singkat mengenai cara kerja masing-masing algoritma:
+
+---
+
+#### 1. Logistic Regression
+
+**Logistic Regression** adalah algoritma klasifikasi linear yang digunakan untuk memprediksi probabilitas dari sebuah kelas. Alih-alih memberikan output nilai kontinu seperti regresi linear, logistic regression menggunakan **fungsi sigmoid (logistik)** untuk memetakan output ke dalam rentang 0 hingga 1, sehingga cocok untuk tugas klasifikasi biner.
+
+Cara kerjanya:
+
+* Model menghitung kombinasi linear dari fitur input:
+
+  $$
+  z = w_1x_1 + w_2x_2 + \ldots + w_nx_n + b
+  $$
+* Nilai `z` kemudian dimasukkan ke dalam fungsi sigmoid:
+
+  $$
+  \sigma(z) = \frac{1}{1 + e^{-z}}
+  $$
+* Hasil sigmoid digunakan sebagai probabilitas prediksi, dan keputusan kelas ditentukan berdasarkan ambang batas tertentu (biasanya 0.5).
+
+Logistic Regression bekerja dengan baik ketika hubungan antara fitur dan target bersifat **linear**.
+
+---
+
+#### 2. Random Forest Classifier
+
+**Random Forest** adalah algoritma ensemble learning berbasis pohon keputusan yang membangun **banyak pohon keputusan** dan menggabungkan hasilnya (melalui voting mayoritas untuk klasifikasi) untuk meningkatkan akurasi dan mengurangi overfitting.
+
+Cara kerjanya:
+
+* Model membuat beberapa pohon keputusan (`n_estimators`), di mana setiap pohon:
+
+  * Dilatih menggunakan **subset acak** dari data latih (dengan teknik bootstrap sampling).
+  * Menggunakan subset acak dari fitur saat menentukan split terbaik (bagian dari teknik *bagging*).
+* Prediksi akhir didasarkan pada mayoritas hasil prediksi dari seluruh pohon.
+
+Random Forest sangat efektif dalam menangani **fitur non-linear**, interaksi kompleks antar fitur, serta **mengurangi varians** dari model pohon tunggal.
+
+---
+
+#### 3. XGBoost Classifier
+
+**XGBoost (Extreme Gradient Boosting)** adalah algoritma ensemble berbasis pohon keputusan yang mengimplementasikan teknik **gradient boosting** secara efisien dan teroptimasi. Berbeda dengan Random Forest, XGBoost membangun pohon secara **berurutan**, dan setiap pohon baru berusaha **memperbaiki kesalahan** dari pohon sebelumnya.
+
+Cara kerjanya:
+
+* Model memulai dari prediksi awal (misalnya rata-rata).
+* Setiap iterasi menambahkan pohon baru yang dilatih untuk meminimalkan **loss function** berdasarkan **gradien error** dari model sebelumnya.
+* Proses ini berlanjut hingga mencapai jumlah pohon yang ditentukan atau tidak ada lagi perbaikan signifikan.
+
+XGBoost dikenal karena:
+
+* Menggunakan teknik **regularisasi** untuk mencegah overfitting.
+* Mendukung **parallel processing**, sehingga sangat cepat.
+* Memberikan hasil akurat terutama pada dataset kompleks.
 
 ![image](https://github.com/user-attachments/assets/c44e50be-cac6-43fa-a1be-6065ea1c81a0)
 
@@ -494,32 +552,44 @@ Dengan cara ini, saya dapat melihat seberapa baik model Logistic Regression dala
 
 ![image](https://github.com/user-attachments/assets/e2ca8473-cf03-4704-a4b5-441ea44bb387)
 
-Pada tahap ini **saya melatih model Random Forest dengan 100 pohon keputusan dan kedalaman maksimal 10, kemudian mengevaluasi performanya pada data latih dan data uji menggunakan akurasi dan F1-score**.
+Pada tahap ini **saya melatih model Random Forest menggunakan algoritma `RandomForestClassifier` dari pustaka `sklearn.ensemble`**. Model ini digunakan dengan konfigurasi sebagai berikut:
 
-Penjelasan singkat:
+* `n_estimators=100`: Menggunakan 100 pohon keputusan (decision trees).
+* `max_depth=10`: Mengatur kedalaman maksimum setiap pohon hingga 10 untuk menghindari overfitting.
+* `random_state=42`: Menetapkan seed random agar hasil eksperimen dapat direproduksi secara konsisten.
 
-* Membuat model `RandomForestClassifier` dengan parameter `n_estimators=100` dan `max_depth=10` untuk mengontrol kompleksitas pohon.
-* Melatih model menggunakan data latih.
-* Memprediksi hasil pada data latih dan data uji.
-* Menghitung dan menyimpan akurasi serta F1-score ke dalam DataFrame `models` pada kolom `RandomForest`.
+Langkah-langkah pelatihan dan evaluasi model dilakukan sebagai berikut:
 
-Ini membantu saya membandingkan performa Random Forest dengan model lain secara terstruktur.
+1. Membuat objek model `RandomForestClassifier` dengan parameter seperti di atas.
+2. Melatih model menggunakan data latih (`X_train`, `y_train`).
+3. Menggunakan model untuk memprediksi label pada data latih (`X_train`) dan data uji (`X_test`).
+4. Menghitung metrik evaluasi:
+
+   * Akurasi (`accuracy_score`) dan F1-score (`f1_score`) pada data latih dan data uji.
+   * Hasil evaluasi disimpan ke dalam DataFrame `models` pada kolom `RandomForest`.
+
+Model Random Forest ini digunakan sebagai baseline yang kuat karena kemampuannya menangani data dengan fitur non-linear dan interaksi antar fitur secara otomatis.
 
 ## XGBoost Classifier
 
 ![image](https://github.com/user-attachments/assets/b7421833-8089-45c4-a2c6-91d8410ad08c)
 
-Pada tahap ini **saya melatih model XGBoost dengan 50 pohon dan kedalaman maksimal 5, lalu mengevaluasi performanya dengan akurasi dan F1-score pada data latih dan data uji**.
+Selanjutnya, saya juga melatih model **XGBoost menggunakan `XGBClassifier` dari pustaka `xgboost`**, dengan parameter sebagai berikut:
 
-Penjelasan singkat:
+* `n_estimators=50`: Jumlah boosting rounds atau pohon yang akan dibuat sebanyak 50.
+* `max_depth=5`: Kedalaman maksimum setiap pohon dibatasi hingga 5 untuk menghindari kompleksitas berlebih.
+* `random_state=42`: Digunakan untuk memastikan hasil pelatihan yang dapat direproduksi.
+* `use_label_encoder=False`: Menonaktifkan encoder label default XGBoost untuk menghindari peringatan yang sudah deprecated.
+* `eval_metric='logloss'`: Mengatur metrik evaluasi internal selama pelatihan ke log-loss (digunakan untuk klasifikasi biner).
 
-* Membuat model `XGBClassifier` dengan parameter `n_estimators=50`, `max_depth=5`, serta pengaturan untuk menghindari peringatan (`use_label_encoder=False`, `eval_metric='logloss'`).
-* Melatih model menggunakan data latih.
-* Membuat prediksi pada data latih dan data uji.
-* Menghitung dan menyimpan akurasi dan F1-score ke dalam DataFrame `models` di kolom `XGB`.
+Langkah-langkah pelatihan dan evaluasi model:
 
-Ini memungkinkan saya membandingkan performa XGBoost dengan model lain secara mudah dan terorganisir.
+1. Membuat objek `XGBClassifier` dengan parameter di atas.
+2. Melatih model menggunakan data latih (`X_train`, `y_train`).
+3. Melakukan prediksi pada data latih dan data uji.
+4. Menghitung akurasi dan F1-score pada kedua set data, kemudian menyimpannya di DataFrame `models` pada kolom `XGB`.
 
+Model XGBoost dikenal dengan performanya yang unggul dalam berbagai kompetisi machine learning karena kemampuannya melakukan boosting secara efisien dan menangani overfitting dengan baik melalui pengaturan parameter seperti `max_depth`.
 
 ## Evaluation
 
