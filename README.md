@@ -335,7 +335,7 @@ Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih rep
 
 ![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
 
-Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
+Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 7 kolom.
 
 Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
 
