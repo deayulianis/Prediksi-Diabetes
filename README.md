@@ -76,13 +76,6 @@ Pada tahap ini, saya menggunakan perintah df.describe() untuk melakukan analisis
 
 Informasi ini sangat berguna untuk tahap pra-pemrosesan, seperti identifikasi outlier, normalisasi, serta memahami distribusi dan proporsi data yang bisa memengaruhi performa model prediktif di tahap selanjutnya.
 
-*Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
-
-![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
-
-Dari output terlihat bahwa:
-- Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
-
 *Deteksi Outlier Ekstrem dengan IQR Method dan Visualisasi*
 
 ![image](https://github.com/user-attachments/assets/db7a7503-d01e-44ee-a27b-b913d7c390ce)
@@ -112,16 +105,6 @@ Hasilnya menunjukkan:
 - Nilai BMI tertinggi = 95.69
 
 Karena nilai tertinggi jauh di atas batas atas, ini menegaskan bahwa dataset mengandung outlier ekstrem yang perlu dipertimbangkan dalam proses cleaning atau transformasi data sebelum pemodelan.
-
-*Menghapus outlier ekstrem pada fitur BMI*
-
-![image](https://github.com/user-attachments/assets/3317250e-22c7-47f8-932a-40260963e1a9)
-
-Pada tahap ini, saya menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
-
-Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
-
-Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
 
 *Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
 
@@ -333,6 +316,15 @@ Pada tahap ini saya menggunakan heatmap dari `seaborn` untuk memvisualisasikan k
 **Kesimpulan:**
 Fitur yang berkorelasi tinggi dengan `diabetes` layak diprioritaskan dalam pemodelan, sementara rendahnya korelasi antar prediktor menunjukkan fitur saling melengkapi.
 
+## Data Preparation
+
+*Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
+
+![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
+
+Dari output terlihat bahwa:
+- Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
+
 **Menghapus dua kolom yaitu 'heart_disease' dan 'hypertension'**
 
 ![image](https://github.com/user-attachments/assets/2e6000b3-28db-4e0a-aee5-6d6a1e4dc16c)
@@ -347,7 +339,16 @@ df.drop(['heart_disease', 'hypertension'], inplace=True, axis=1)
 df.head()
 → Menampilkan 5 baris pertama dari DataFrame setelah penghapusan kolom, untuk memastikan bahwa struktur data sudah sesuai dan kolom yang tidak dibutuhkan telah berhasil dihapus.
 
-## Data Preparation
+*Menghapus outlier ekstrem pada fitur BMI*
+
+![image](https://github.com/user-attachments/assets/3317250e-22c7-47f8-932a-40260963e1a9)
+
+Pada tahap ini, saya menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
+
+Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
+
+Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
+
 **Encoding Data Categorical**
 
 ![image](https://github.com/user-attachments/assets/35871943-d89c-4a28-9f10-6dc2c1594628)
