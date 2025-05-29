@@ -106,24 +106,6 @@ Hasilnya menunjukkan:
 
 Karena nilai tertinggi jauh di atas batas atas, ini menegaskan bahwa dataset mengandung outlier ekstrem yang perlu dipertimbangkan dalam proses cleaning atau transformasi data sebelum pemodelan.
 
-*Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
-
-![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
-
-Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
-
-Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
-
-*Memvisualisasikan kembali boxplot fitur BMI*
-
-![image](https://github.com/user-attachments/assets/c9cf3307-0b20-4c4f-afa8-aa1ca48293d3)
-
-Pada tahap ini, memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
-
-Tujuannya adalah untuk mengevaluasi hasil pembersihan, memastikan bahwa nilai-nilai ekstrem di atas batas atas telah berhasil dihapus.
-
-Hasil boxplot menunjukkan distribusi yang lebih rapat dan simetris, tanpa adanya outlier ekstrem, sehingga data lebih bersih dan siap digunakan untuk proses pemodelan machine learning.
-
 *Memeriksa nilai yang hilang (missing values)*
 
 ![image](https://github.com/user-attachments/assets/8acbe93e-4dd8-4ee1-a1e8-c80147dfc229)
@@ -348,6 +330,24 @@ Pada tahap ini, menghapus outlier ekstrem pada fitur BMI dengan cara menyaring d
 Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
 
 Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
+
+*Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
+
+![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
+
+Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 9 kolom.
+
+Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
+
+*Memvisualisasikan kembali boxplot fitur BMI*
+
+![image](https://github.com/user-attachments/assets/c9cf3307-0b20-4c4f-afa8-aa1ca48293d3)
+
+Pada tahap ini, memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
+
+Tujuannya adalah untuk mengevaluasi hasil pembersihan, memastikan bahwa nilai-nilai ekstrem di atas batas atas telah berhasil dihapus.
+
+Hasil boxplot menunjukkan distribusi yang lebih rapat dan simetris, tanpa adanya outlier ekstrem, sehingga data lebih bersih dan siap digunakan untuk proses pemodelan machine learning.
 
 **Encoding Data Categorical**
 
