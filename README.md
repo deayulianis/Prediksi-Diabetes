@@ -300,13 +300,6 @@ Fitur yang berkorelasi tinggi dengan `diabetes` layak diprioritaskan dalam pemod
 
 ## Data Preparation
 
-*Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
-
-![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
-
-Dari output terlihat bahwa:
-- Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
-
 **Menghapus dua kolom yaitu 'heart_disease' dan 'hypertension'**
 
 ![image](https://github.com/user-attachments/assets/2e6000b3-28db-4e0a-aee5-6d6a1e4dc16c)
@@ -320,6 +313,13 @@ df.drop(['heart_disease', 'hypertension'], inplace=True, axis=1)
 
 df.head()
 → Menampilkan 5 baris pertama dari DataFrame setelah penghapusan kolom, untuk memastikan bahwa struktur data sudah sesuai dan kolom yang tidak dibutuhkan telah berhasil dihapus.
+
+*Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
+
+![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
+
+Dari output terlihat bahwa:
+- Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
 
 *Menghapus outlier ekstrem pada fitur BMI*
 
@@ -394,7 +394,7 @@ Penjelasan tambahan:
   * `test_size=0.1` menunjukkan proporsi data uji.
   * `random_state=123` memastikan hasil pembagian data konsisten/reproducible setiap kali kode dijalankan.
 
-![image](https://github.com/user-attachments/assets/d8f14cec-d99f-44ef-82f6-db15c5aab9db)
+![image](https://github.com/user-attachments/assets/f7481905-064d-4154-beb5-eaefceb9ffa9)
 
 Pada tahap ini **mencetak jumlah sampel/data pada keseluruhan dataset, data latih, dan data uji** dengan tujuan **untuk memastikan bahwa proses pembagian data sebelumnya berjalan dengan benar dan proporsinya sesuai yang diharapkan**.
 
@@ -614,18 +614,18 @@ Model XGBoost dikenal dengan performanya yang unggul dalam berbagai kompetisi ma
 
 ## Evaluation
 
-![image](https://github.com/user-attachments/assets/d40d5f5b-baeb-46cb-8bb3-6a4b324c34c3)
+![image](https://github.com/user-attachments/assets/cb8e9705-c1df-46d3-b08d-4a892a79eaa6)
 
 Pada tahap ini **menampilkan tabel hasil evaluasi performa ketiga model machine learning yang sudah dilatih dan diuji** dengan tujuan **untuk membandingkan dan melihat bagaimana masing-masing model bekerja pada data latih dan data uji berdasarkan metrik akurasi dan F1-score**.
 
 Penjelasan:
 
 * Kolom menunjukkan tiga model: **Logistic Regression**, **Random Forest**, dan **XGBoost**.
-* Baris `train_acc` dan `train_f1` menunjukkan performa model pada data latih. Semua model punya akurasi tinggi (sekitar 96-97%) dan F1-score cukup bagus, dengan XGBoost sedikit lebih baik.
-* Baris `test_acc` dan `test_f1` menunjukkan performa model pada data uji. Nilai akurasi dan F1-score di data uji sangat rendah (sekitar 8% untuk akurasi dan 15% untuk F1), yang mengindikasikan bahwa model **mungkin mengalami masalah seperti overfitting, kesalahan pengukuran, atau data uji yang sangat berbeda**.
+* Baris `train_acc` dan `train_f1` menunjukkan performa model pada data latih. Semua model menunjukkan akurasi tinggi (sekitar 96–97%) dan F1-score yang cukup bagus, dengan Random Forest dan XGBoost sedikit lebih unggul dibanding Logistic Regression.
+* Baris `test_acc` dan `test_f1` menunjukkan performa model pada data uji. Nilai akurasi tetap tinggi (sekitar 96–97%) dan F1-score juga meningkat secara proporsional, menunjukkan bahwa model mampu mempertahankan performa pada data yang belum pernah dilihat sebelumnya.
 
 Kesimpulan singkat:
-Walaupun model tampak sangat baik saat dilatih, performanya jauh menurun di data uji, jadi perlu diperiksa kembali data, preprocessing, atau strategi pemodelan agar hasilnya lebih valid dan dapat diandalkan.
+Semua model menunjukkan performa yang **baik dan stabil** baik pada data latih maupun data uji, dengan **Random Forest dan XGBoost** sedikit lebih unggul dibanding Logistic Regression dalam hal F1-score. Tidak ada indikasi overfitting yang mencolok, dan hasil ini menunjukkan bahwa proses pelatihan serta evaluasi telah berjalan dengan baik.
 
 
 ![image](https://github.com/user-attachments/assets/37ff815e-14c0-4d7a-9ee1-b2fd5f79288a)
@@ -643,31 +643,33 @@ Penjelasan:
 
 Dengan fungsi ini, proses evaluasi model jadi lebih praktis, rapi, dan informatif, membantu dalam memilih model terbaik secara objektif.
 
-![image](https://github.com/user-attachments/assets/57225d87-8a3b-4ecf-9852-46cae586c9c8)
+![image](https://github.com/user-attachments/assets/8ed98748-8e0f-4dc2-a567-4ce1b699ff37)
 
-Pada tahap ini, menjalankan fungsi `evaluate_model` untuk mengevaluasi performa model Logistic Regression yang sudah dilatih. Fungsi ini memberikan hasil evaluasi akurasi dan F1-score baik pada data latih maupun data uji.
+Di tahap ini, mengevaluasi model **Logistic Regression** menggunakan fungsi `evaluate_model`. Dari hasilnya, model ini menunjukkan performa yang sangat baik di data latih, dengan **akurasi sekitar 96,36%** dan **F1-score sekitar 71,55%**, yang menandakan model mampu mengenali pola pada data latih dengan cukup baik.
 
-Hasilnya menunjukkan bahwa model Logistic Regression memiliki akurasi yang sangat tinggi di data latih (sekitar 95,95%) dan F1-score yang cukup bagus (72,37%). Namun, saat diuji pada data uji, akurasi turun drastis menjadi sekitar 8,42%, dan F1-score juga rendah di angka 15,53%.
+Ketika diuji pada data uji, model juga menunjukkan hasil yang **konsisten**, dengan **akurasi sekitar 96,65%** dan **F1-score sekitar 72,77%**. Ini menunjukkan bahwa model dapat menggeneralisasi dengan baik terhadap data baru, tanpa mengalami penurunan performa yang signifikan.
 
-Ini artinya model mampu mempelajari data latih dengan baik, tapi performanya kurang baik ketika dihadapkan dengan data baru (data uji). Kemungkinan besar model mengalami overfitting atau ada masalah lain dengan data/testing, sehingga perlu dilakukan pengecekan lebih lanjut agar hasil prediksi di data uji bisa lebih valid dan andal.
+Jadi, performa model cukup stabil antara data latih dan data uji, menunjukkan bahwa **Logistic Regression merupakan model baseline yang andal**, meskipun masih bisa ditingkatkan lebih lanjut dengan model yang lebih kompleks.
 
-![image](https://github.com/user-attachments/assets/ab43ef65-ccaa-4d3c-a4b4-fdfadd082ee0)
+![image](https://github.com/user-attachments/assets/1d28984f-417d-4293-a589-6552348f0481)
 
-Di tahap ini, mengevaluasi model Random Forest menggunakan fungsi `evaluate_model`. Dari hasilnya, model ini menunjukkan performa yang sangat baik di data latih, dengan akurasi sekitar 97,13% dan F1-score sekitar 79,93%, yang menandakan model bisa mengenali pola pada data latih dengan sangat baik.
+Di tahap ini, mengevaluasi model **Random Forest** menggunakan fungsi `evaluate_model`. Dari hasilnya, model ini menunjukkan performa yang sangat baik di data latih, dengan **akurasi sekitar 97,47%** dan **F1-score sekitar 80,00%**, yang menandakan model bisa mengenali pola pada data latih dengan sangat baik.
 
-Namun, ketika diuji pada data uji, akurasi turun drastis menjadi sekitar 8,42% dan F1-score hanya sekitar 15,53%, mirip dengan hasil Logistic Regression. Ini menandakan model tidak bisa menggeneralisasi dengan baik ke data baru, mungkin karena overfitting atau masalah lain pada data uji.
+Ketika diuji pada data uji, model tetap menunjukkan performa yang sangat baik, dengan **akurasi sekitar 97,76%** dan **F1-score sekitar 81,87%**, bahkan sedikit lebih tinggi dari pada data latih. Ini menunjukkan bahwa model mampu menggeneralisasi dengan sangat baik terhadap data baru.
 
-Jadi, walaupun model terlihat hebat di data latih, performa di data uji sangat buruk, sehingga perlu evaluasi ulang data dan model untuk mendapatkan hasil yang lebih andal.
+Jadi, walaupun model terlihat hebat di data latih, performanya di data uji **juga sangat baik**, sehingga Random Forest merupakan pilihan model yang kuat dan andal dalam menangani data ini.
 
-![image](https://github.com/user-attachments/assets/0b7e72b8-b73b-46a4-826d-18af01a3f5c7)
+![image](https://github.com/user-attachments/assets/e29d429b-2eb3-4b47-a35b-610f68b85af6)
 
-Di tahap ini, mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`. Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan akurasi sekitar 97,18% dan F1-score sebesar 80,54%. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
+Di tahap ini, mengevaluasi model **XGBoost** dengan menggunakan fungsi `evaluate_model`. Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan **akurasi sekitar 97,50%** dan **F1-score sebesar 80,30%**. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
 
-Namun, saat diuji pada data uji, akurasi dan F1-score turun drastis menjadi masing-masing sekitar 8,42% dan 15,53%, sama seperti model lain sebelumnya. Hal ini menunjukkan bahwa model XGBoost juga kesulitan untuk menggeneralisasi ke data baru dan mungkin mengalami overfitting.
+Namun, saat diuji pada data uji, model tetap menunjukkan performa yang sangat baik, dengan **akurasi sekitar 97,73%** dan **F1-score sebesar 81,73%**, hanya sedikit lebih rendah dari hasil pada data latih. Hal ini menunjukkan bahwa model XGBoost mampu menggeneralisasi dengan baik ke data baru dan tidak mengalami overfitting.
 
-Singkatnya, meskipun model tampak hebat saat dilatih, hasil di data uji sangat buruk, sehingga perlu dilakukan perbaikan pada proses pelatihan, pemilihan fitur, atau pengolahan data agar model bisa memberikan prediksi yang lebih akurat pada data yang belum pernah dilihat sebelumnya.
+Singkatnya, meskipun model tampak hebat saat dilatih, hasil di data uji **juga sangat baik**, sehingga XGBoost dapat dianggap sebagai salah satu model terbaik dalam percobaan ini untuk memberikan prediksi yang akurat pada data yang belum pernah dilihat sebelumnya.
 
-![image](https://github.com/user-attachments/assets/56f53e0f-5cfb-4c38-a534-fc35cf54211c)
+![image](https://github.com/user-attachments/assets/1c2cafe8-bd90-4555-a5b0-41dceab3d230)
+
+![image](https://github.com/user-attachments/assets/20b9ad70-27fb-48d8-a037-d83b850d1cee)
 
 **Penjelasan Kode**
 
@@ -689,27 +691,29 @@ Di bagian ini, membuat visualisasi untuk membandingkan performa tiga model machi
    * Warna dan legenda ditentukan agar perbandingan antar metrik lebih jelas.
    * `plt.tight_layout()` digunakan agar grafik tidak saling menumpuk.
 
+---
+
 **Penjelasan Grafik**
 
 Di tahap ini, membandingkan performa tiga model — **Logistic Regression**, **Random Forest**, dan **XGBoost** — dengan menggunakan metrik akurasi dan F1-score. Dari grafik yang ditampilkan, kita bisa menyimpulkan hal berikut:
 
 🔹 Logistic Regression
 
-* **Akurasi pelatihan** sangat tinggi (\~97%), namun **akurasi pengujian** hanya sekitar 8,4%.
-* **F1-score pelatihan** cukup tinggi (\~73%), tapi **F1-score pengujian** hanya sekitar 15,5%.
-* Ini menunjukkan model ini **belajar terlalu banyak dari data pelatihan** (overfitting), dan gagal mengenali pola di data baru.
+* **Akurasi pelatihan** sangat tinggi (\~96%), dan **akurasi pengujian** juga tetap tinggi di sekitar 96,65%.
+* **F1-score pelatihan** cukup tinggi (\~71%), dan **F1-score pengujian** sedikit lebih tinggi di sekitar 72,77%.
+* Ini menunjukkan model ini **stabil** dan mampu mengenali pola di data baru dengan cukup baik, meskipun tidak sekuat model lain yang lebih kompleks.
 
 🔹 Random Forest
 
-* Sama seperti Logistic Regression, performa di data pelatihan sangat baik (akurasi \~98%, F1-score \~79%), namun turun drastis di data uji.
-* Hal ini mengindikasikan bahwa model ini juga mengalami **overfitting**.
+* Performa di data pelatihan sangat baik (**akurasi \~97,47%**, **F1-score \~80%**), dan **performa di data pengujian juga tinggi**, dengan **akurasi \~97,76%** dan **F1-score \~81,87%**.
+* Hal ini menunjukkan bahwa model ini **tidak overfitting** dan mampu menggeneralisasi dengan sangat baik ke data baru.
 
 🔹 XGBoost
 
 * Di tahap ini, mengevaluasi model XGBoost dengan menggunakan fungsi `evaluate_model`.
-  Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan akurasi sekitar **97,18%** dan F1-score sebesar **80,54%**. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
+  Hasil evaluasi menunjukkan bahwa model ini memiliki performa sangat bagus di data latih, dengan **akurasi sekitar 97,50%** dan **F1-score sebesar 80,30%**. Ini artinya model berhasil mempelajari pola-pola dari data latih dengan sangat baik.
 
-* Namun, saat diuji pada data uji, **akurasi dan F1-score turun drastis** menjadi masing-masing sekitar **8,42%** dan **15,53%**, sama seperti model lain sebelumnya. Hal ini menunjukkan bahwa model XGBoost juga kesulitan untuk menggeneralisasi ke data baru dan **mungkin mengalami overfitting**.
+* Saat diuji pada data uji, **akurasi dan F1-score tetap tinggi**, masing-masing sekitar **97,73%** dan **81,73%**. Hal ini menunjukkan bahwa model XGBoost **mampu menggeneralisasi dengan sangat baik** dan merupakan salah satu model dengan performa terbaik dalam eksperimen ini.
 
 ## Kesimpulan
 **Business Understanding dan Evaluasi Model**
@@ -725,6 +729,8 @@ Sudah dijawab melalui perbandingan nilai rata-rata tiap fitur tersebut pada dua 
 **✅ Fitur mana yang paling penting dalam memprediksi kemungkinan diabetes?**
 Telah dijawab dengan membangun model machine learning dan menganalisis feature importance, terutama pada model seperti Random Forest atau XGBoost. Fitur seperti HbA1c, Glukosa, dan BMI terbukti menjadi indikator utama.
 
+---
+
 **2. Apakah berhasil mencapai setiap Goals?**
 
 | Goals                                                               | Status | Penjelasan Singkat                                                    |
@@ -739,17 +745,17 @@ Telah dijawab dengan membangun model machine learning dan menganalisis feature i
 
 **Solusi: Gunakan model non-linear seperti Random Forest dan XGBoost.**
 
-| Model              | Train Accuracy | Test Accuracy | Train F1 | Test F1 | Evaluasi    |
-| ------------------ | -------------- | ------------- | -------- | ------- | ----------- |
-| LogisticRegression | 95.95%         | 8.42%         | 72.37%   | 15.52%  | Overfitting |
-| RandomForest       | 97.13%         | 8.42%         | 79.93%   | 15.52%  | Overfitting |
-| XGBoost            | 97.18%         | 8.42%         | 80.53%   | 15.52%  | Overfitting |
+| Model              | Train Accuracy | Test Accuracy | Train F1 | Test F1 | Evaluasi          |
+| ------------------ | -------------- | ------------- | -------- | ------- | ----------------- |
+| LogisticRegression | 96.36%         | 96.65%        | 71.55%   | 72.77%  | Generalisasi Baik |
+| RandomForest       | 97.47%         | 97.76%        | 80.00%   | 81.87%  | Sangat Baik       |
+| XGBoost            | 97.50%         | 97.73%        | 80.30%   | 81.73%  | Sangat Baik       |
 
 **🧩 Kesimpulan:**
 
-* Semua model, meskipun sangat akurat pada data pelatihan, **gagal generalisasi** ke data pengujian.
-* Ini mengindikasikan **overfitting parah** — model terlalu menghafal data latih dan tidak mengenali pola baru.
-* Solusi yang direncanakan **masih belum memberikan dampak optimal terhadap prediksi**.
+* Semua model menunjukkan performa **konsisten** dan **stabil** antara data pelatihan dan pengujian.
+* Tidak ditemukan indikasi overfitting. Model **mampu menggeneralisasi** dengan baik terhadap data baru.
+* Solusi yang direncanakan **berhasil memberikan hasil optimal dalam prediksi diabetes**.
 
 ---
 
@@ -759,16 +765,16 @@ Untuk memastikan solusi benar-benar berdampak terhadap bisnis dan menjawab kebut
 
 1. **Cross-validation** untuk validasi yang lebih stabil dan adil.
 2. **Penyeimbangan data** jika terdapat ketimpangan jumlah kelas (SMOTE, oversampling, dsb).
-3. **Feature selection & regularisasi** untuk mengurangi kompleksitas dan overfitting.
+3. **Feature selection & regularisasi** untuk mempertahankan model yang efisien dan robust.
 4. Tambahkan **metrik bisnis** seperti jumlah pasien benar teridentifikasi, potensi penghematan biaya kesehatan, dll.
 
 ---
 
 **Kesimpulan Akhir**
 
-* Semua problem statement dan goals **sudah terjawab secara teknis**.
-* Namun, model yang dibangun **belum efektif digunakan dalam konteks nyata** karena performanya buruk pada data uji.
-* Solusi yang direncanakan **masih perlu penguatan** dengan pendekatan yang lebih robust agar berdampak langsung pada pengambilan keputusan dalam manajemen kesehatan dan penanganan diabetes.
+* Semua problem statement dan goals **sudah terjawab secara teknis dan validasi model** menunjukkan performa sangat baik.
+* Model yang dibangun **efektif digunakan dalam konteks nyata** karena berhasil memprediksi secara akurat pada data uji.
+* Solusi yang direncanakan **layak diimplementasikan** untuk mendukung pengambilan keputusan dalam manajemen kesehatan dan penanganan diabetes.
 
 
 
