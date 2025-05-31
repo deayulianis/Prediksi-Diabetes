@@ -329,7 +329,7 @@ Pada tahap ini, menghapus outlier ekstrem pada fitur BMI dengan cara menyaring d
 
 Tujuannya adalah untuk mengurangi pengaruh nilai ekstrem yang dapat merusak performa model machine learning.
 
-Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
+Setelah pembersihan, jumlah data berkurang menjadi 93.124 sampel, yang lebih representatif terhadap distribusi BMI normal dalam populasi.
 
 *Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
 
