@@ -316,7 +316,7 @@ df.head()
 
 *Menangani Nilai Usia yang Tidak Masuk Akal (age < 1)*
 
-![image](https://github.com/user-attachments/assets/f8f17914-28db-492d-81c7-fa81b3b54072)
+![image](https://github.com/user-attachments/assets/a97b4454-fde6-46ad-ad87-e070186f4844)
 
 Dari output terlihat bahwa:
 - Usia rata-rata peserta adalah dewasa (sekitar 42 tahun). Distribusi cenderung merata antara usia muda dan tua.
