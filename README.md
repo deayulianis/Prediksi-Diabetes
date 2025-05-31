@@ -323,7 +323,7 @@ df.head()
 
 *Menghapus outlier ekstrem pada fitur BMI*
 
-![image](https://github.com/user-attachments/assets/3317250e-22c7-47f8-932a-40260963e1a9)
+![image](https://github.com/user-attachments/assets/b477b205-eb9b-49b3-bacb-10f4a309a8a5)
 
 Pada tahap ini, menghapus outlier ekstrem pada fitur BMI dengan cara menyaring data yang berada di atas batas atas (38.45), sesuai perhitungan IQR sebelumnya.
 
@@ -333,17 +333,17 @@ Setelah pembersihan, jumlah data berkurang menjadi 93.069 sampel, yang lebih rep
 
 *Memeriksa ukuran dataset setelah melakukan penghapusan outlier* 
 
-![image](https://github.com/user-attachments/assets/378e7702-9e11-41e8-8873-7766ba2e6dd1)
+![image](https://github.com/user-attachments/assets/eb8835e5-60a9-43a2-8cc4-8e4a5d9d052d)
 
-Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 99.089 baris dan 7 kolom.
+Pada tahap ini, memeriksa ukuran setelah melakukan penghapusan outlier pada dataset menggunakan df.shape, yang menunjukkan bahwa data terdiri dari 93.124 baris dan 7 kolom.
 
 Informasi ini menjadi patokan awal untuk membandingkan perubahan jumlah data setelah dilakukan pembersihan outlier, khususnya pada fitur BMI.
 
 *Memvisualisasikan kembali boxplot fitur BMI*
 
-![image](https://github.com/user-attachments/assets/c9cf3307-0b20-4c4f-afa8-aa1ca48293d3)
+![image](https://github.com/user-attachments/assets/d421e5f2-f192-4153-aa30-dbd5dd4cc54c)
 
-Pada tahap ini, memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df_cleaned.
+Pada tahap ini, memvisualisasikan kembali boxplot fitur BMI setelah pembersihan outlier menggunakan data df.
 
 Tujuannya adalah untuk mengevaluasi hasil pembersihan, memastikan bahwa nilai-nilai ekstrem di atas batas atas telah berhasil dihapus.
 
@@ -406,26 +406,31 @@ Penjelasan:
 
 **Standarisasi**
 
-![image](https://github.com/user-attachments/assets/909e48da-5324-41fa-bf3e-3e283bd87cab)
+![image](https://github.com/user-attachments/assets/cfb227e9-cad3-4d3e-a6f8-e9f6c517be81)
 
-Pada tahap ini **melakukan normalisasi atau standarisasi terhadap fitur-fitur numerik menggunakan `StandardScaler` dari scikit-learn** dengan tujuan **untuk menyamakan skala nilai dari setiap fitur numerik sehingga model machine learning dapat belajar dengan lebih baik dan tidak berat sebelah terhadap fitur dengan skala yang lebih besar**.
+Pada tahap ini, dilakukan normalisasi atau standarisasi terhadap fitur-fitur numerik menggunakan StandardScaler dari scikit-learn dengan tujuan untuk menyamakan skala nilai dari setiap fitur numerik sehingga model machine learning dapat belajar dengan lebih baik dan tidak berat sebelah terhadap fitur dengan skala yang lebih besar.
 
 Penjelasan langkah demi langkah:
+1. numerical_features = ['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']
+→ Saya menentukan daftar fitur yang bersifat numerik, yaitu usia, indeks massa tubuh (BMI), kadar HbA1c, dan kadar gula darah.
 
-1. `numerical_features = ['age', 'bmi', 'HbA1c_level', 'blood_glucose_level']`
-   → Saya menentukan daftar fitur yang bersifat numerik, yaitu usia, indeks massa tubuh (BMI), kadar HbA1c, dan kadar gula darah.
+2. scaler = StandardScaler()
+→ Saya membuat objek StandardScaler, yaitu alat yang akan mengubah data sehingga setiap kolom memiliki rata-rata 0 dan standar deviasi 1.
 
-2. `scaler = StandardScaler()`
-   → Saya membuat objek `StandardScaler`, yaitu alat yang akan mengubah data sehingga setiap kolom memiliki **rata-rata 0** dan **standar deviasi 1**.
+3. scaler.fit(X_train[numerical_features])
+→ Saya “melatih” scaler ini hanya pada data latih (X_train) untuk menghitung rata-rata dan standar deviasi tiap fitur numerik.
+→ Ini penting untuk menghindari kebocoran data (data leakage), yaitu saat informasi dari data uji (X_test) secara tidak sengaja digunakan saat pelatihan.
 
-3. `scaler.fit(X_train[numerical_features])`
-   → Saya “melatih” scaler ini hanya pada data latih, agar informasi dari data uji tidak ikut terbawa (ini penting untuk menghindari kebocoran data saat pelatihan model).
+4. X_train[numerical_features] = scaler.transform(X_train[numerical_features])
+→ Saya menerapkan transformasi skala ini ke fitur-fitur numerik di X_train.
+→ Nilai-nilai asli (misalnya usia 50 tahun, atau kadar gula 130 mg/dL) diubah menjadi nilai standar, misalnya 0.75 atau -1.2.
 
-4. `X_train[numerical_features] = scaler.transform(X_train.loc[:, numerical_features])`
-   → Saya menerapkan transformasi skala ini ke fitur-fitur numerik di `X_train`. Nilai-nilai asli seperti umur atau kadar gula darah yang awalnya dalam satuan nyata diubah menjadi nilai standar (misalnya dari `80` menjadi `0.75`, dsb).
+5. X_test[numerical_features] = scaler.transform(X_test[numerical_features])
+→ Saya juga menerapkan transformasi yang sama ke X_test dengan scaler yang sama (yang telah di-fit dari X_train).
+→ Ini memastikan data uji berada dalam skala yang sama dengan data latih, tanpa menghitung ulang mean/std dari data uji.
 
-5. `X_train[numerical_features].head()`
-   → Saya menampilkan 5 baris pertama dari hasil transformasi untuk memverifikasi bahwa skala data sudah berubah.
+6. X_train[numerical_features].head() dan X_test[numerical_features].head()
+→ Saya dapat menampilkan 5 baris pertama dari masing-masing hasil transformasi untuk memverifikasi bahwa skala data sudah sesuai.
 
 **Menampilkan statistik deskriptif dari fitur numerik**
 
@@ -443,6 +448,22 @@ Dari hasil ini terlihat:
 * **Mean (rata-rata)** semua fitur mendekati **0**, dan **standard deviation (std)** mendekati **1**, yang menandakan bahwa data telah dinormalisasi menggunakan **standar skala** (z-score normalization).
 * **Min dan max** menunjukkan nilai terendah dan tertinggi setelah data diskalakan.
 * Kuartil (25%, 50%, 75%) menunjukkan persebaran data di sekitar rata-rata.
+
+![image](https://github.com/user-attachments/assets/7dbb697e-2b79-477e-85ab-11cbdeff5878)
+
+Pada tahap ini, ditampilkan statistik deskriptif dari fitur numerik dalam data uji (X_test) setelah dilakukan proses standardisasi menggunakan StandardScaler. Tujuannya adalah untuk memeriksa apakah data uji telah berada pada skala yang sama seperti data latih, yaitu memiliki rata-rata mendekati 0 dan standar deviasi mendekati 1, sesuai prinsip normalisasi menggunakan Z-score.
+
+Penjelasan:
+- X_test[numerical_features].describe() memberikan ringkasan statistik untuk fitur-fitur numerik seperti age, bmi, HbA1c_level, dan blood_glucose_level dalam data uji.
+
+- .round(4) digunakan untuk membulatkan angka ke empat desimal agar lebih mudah dibaca.
+
+Kesimpulan:
+* Mean dari keempat fitur berada sangat dekat dengan 0, dan standard deviation (std) mendekati 1, yang menandakan bahwa proses standardisasi berhasil diterapkan dengan konsisten ke data uji (X_test) menggunakan scaler yang sama dari data latih (X_train).
+
+* Min dan max menunjukkan sebaran nilai setelah transformasi.
+
+* Kuartil (25%, 50%, dan 75%) menunjukkan distribusi data setelah diskalakan.
 
 ## Modelling
 
