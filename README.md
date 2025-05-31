@@ -434,7 +434,7 @@ Penjelasan langkah demi langkah:
 
 **Menampilkan statistik deskriptif dari fitur numerik**
 
-![image](https://github.com/user-attachments/assets/132dec40-4535-41fd-81da-fc96b49befbe)
+![image](https://github.com/user-attachments/assets/830518bd-0ba9-4f4d-a0c9-c554a4401187)
 
 Pada tahap ini **menampilkan statistik deskriptif dari fitur numerik dalam data latih (X\_train) setelah dilakukan proses normalisasi atau standardisasi** dengan tujuan **untuk memeriksa distribusi data numerik dan memastikan bahwa data telah berskala (scaled) dengan benar, yaitu memiliki rata-rata 0 dan standar deviasi 1**.
 
@@ -446,8 +446,9 @@ Penjelasan:
 Dari hasil ini terlihat:
 
 * **Mean (rata-rata)** semua fitur mendekati **0**, dan **standard deviation (std)** mendekati **1**, yang menandakan bahwa data telah dinormalisasi menggunakan **standar skala** (z-score normalization).
-* **Min dan max** menunjukkan nilai terendah dan tertinggi setelah data diskalakan.
-* Kuartil (25%, 50%, 75%) menunjukkan persebaran data di sekitar rata-rata.
+* **Min dan max** menunjukkan nilai terendah dan tertinggi setelah data diskalakan, masing-masing berkisar antara **-3.27 hingga 4.05**, menunjukkan ada beberapa nilai ekstrim namun data tetap dalam rentang yang wajar.
+* Kuartil (25%, 50%, 75%) menunjukkan persebaran data di sekitar rata-rata, dan mencerminkan bahwa distribusi data telah diseimbangkan dengan baik setelah standardisasi.
+
 
 ![image](https://github.com/user-attachments/assets/7dbb697e-2b79-477e-85ab-11cbdeff5878)
 
